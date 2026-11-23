@@ -1,9 +1,9 @@
 {
-  "version": "20261123-card-layout-1",
+  "version": "20261123-detail-auto-1",
   "owner": "lantai121003-eng",
   "repository": "my-inspiration-gacha",
   "entry": "hi3d-my-capsules.html",
-  "entrySha256": "758bfa830ba7581b34fb09d9d2b90fa54e6a7e92ef21d48bdadae93917f8b0c7",
+  "entrySha256": "4a57fb38bca02b2f142e0558f0624c735a9a339b21891de959793636c13a13fa",
   "resourceCount": 213,
   "contentSha256": "e51a8f9094392f17d2de4d43391c18eeb0e51a7c12f5e7437e86ac8f11674c6e",
   "contentFile": "hi3d-content.json"

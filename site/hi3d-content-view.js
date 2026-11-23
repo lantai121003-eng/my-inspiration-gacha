@@ -31,13 +31,13 @@ window.PortfolioView = {
     if (!project.demoUrl || project.displayMode !== 'embed') return '';
     const escape = this.escape;
     const host = new URL(project.demoUrl).hostname;
-    return `<section class="project-experience" aria-labelledby="experienceTitle"><div class="experience-heading"><div><p class="eyebrow">LIVE EXPERIENCE / 在线体验</p><h2 id="experienceTitle">不止看介绍，亲自试一试。</h2></div><a class="textlink" href="${escape(project.demoUrl)}" target="_blank" rel="noopener noreferrer">新窗口打开 ↗</a></div><div class="demo-browser"><div class="browser-bar"><span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="browser-host">${escape(host)}</span><span class="browser-label">交互演示</span></div><div class="experience-stage" id="experienceStage">${project.cover ? `<img class="demo-poster" src="${escape(project.cover)}" alt="${escape(project.title)}页面预览" loading="lazy" decoding="async">` : `<div class="demo-poster demo-placeholder" style="--art:${project.bg}"><span>${escape(project.symbol)}</span></div>`}<div class="experience-invite"><span>在作品集中体验这个项目</span><button class="button primary" type="button" id="loadExperience">加载交互演示 →</button><small>点击后连接外部网站，不会提前加载。</small></div></div><div class="experience-footer"><p id="experienceStatus" role="status">嵌入受原网站限制；如遇空白、登录或布局问题，请新窗口打开。</p><button class="button" id="stopExperience" type="button" hidden>关闭演示</button></div></div></section>`;
+    return `<section class="project-experience" aria-labelledby="experienceTitle"><div class="experience-heading"><div><p class="eyebrow">LIVE EXPERIENCE / 在线体验</p><h2 id="experienceTitle">不止看介绍，亲自试一试。</h2></div><a class="textlink" href="${escape(project.demoUrl)}" target="_blank" rel="noopener noreferrer">新窗口打开 ↗</a></div><div class="demo-browser"><div class="browser-bar"><span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="browser-host">${escape(host)}</span><span class="browser-label">交互演示</span></div><div class="experience-stage" id="experienceStage">${project.cover ? `<img class="demo-poster" src="${escape(project.cover)}" alt="${escape(project.title)}页面预览" decoding="async">` : `<div class="demo-poster demo-placeholder" style="--art:${project.bg}"><span>${escape(project.symbol)}</span></div>`}</div><div class="experience-footer"><p id="experienceStatus" role="status">进入详情后自动连接演示；若原网站限制嵌入，请新窗口打开。</p><div class="experience-controls"><button class="button" id="reloadExperience" type="button">重新加载</button><button class="button" id="stopExperience" type="button">暂停演示</button></div></div></div></section>`;
   },
   bindExperience(project) {
-    const load = document.getElementById('loadExperience');
-    if (!load) return;
     const stage = document.getElementById('experienceStage');
+    if (!stage || !project.demoUrl || project.displayMode !== 'embed') return;
     const original = stage.innerHTML;
+    const reload = document.getElementById('reloadExperience');
     const stop = document.getElementById('stopExperience');
     const status = document.getElementById('experienceStatus');
     const start = () => {
@@ -47,22 +47,24 @@ window.PortfolioView = {
       frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox');
       frame.referrerPolicy = 'no-referrer';
       frame.allowFullscreen = true;
+      frame.loading = 'eager';
       frame.src = project.demoUrl;
       stage.replaceChildren(frame);
       stage.classList.add('is-live');
       stop.hidden = false;
-      status.textContent = '已请求加载外部页面。如遇空白、登录或无法操作，请使用上方「新窗口打开」。';
-      frame.focus();
+      reload.textContent = '重新加载';
+      status.textContent = '已自动连接外部演示，无需点击加载。如遇空白、登录或布局限制，请使用「新窗口打开」。';
     };
-    load.onclick = start;
+    reload.onclick = start;
     stop.onclick = () => {
       stage.classList.remove('is-live');
       stage.innerHTML = original;
       stop.hidden = true;
-      status.textContent = '演示已关闭。如遇原网站限制，可在新窗口继续体验。';
-      document.getElementById('loadExperience').onclick = start;
-      document.getElementById('loadExperience').focus();
+      reload.textContent = '继续演示';
+      status.textContent = '演示已暂停并释放页面。可继续演示，或在新窗口打开完整产品。';
+      reload.focus({ preventScroll: true });
     };
+    start();
   },
   apply(content) {
     const paragraph = (selector, text) => {
