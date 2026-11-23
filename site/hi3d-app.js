@@ -181,6 +181,20 @@ function showPreview(index) {
   element('previewDescription').textContent=project.description;
   element('previewRole').textContent=project.role;
   element('previewLink').href=`#project/${project.id}`;
+  let demoLink=element('previewDemo');
+  if(!demoLink) {
+    demoLink=document.createElement('a');
+    demoLink.id='previewDemo'; demoLink.className='button dark';
+    demoLink.target='_blank'; demoLink.rel='noopener noreferrer';
+    element('previewLink').before(demoLink);
+  }
+  demoLink.hidden=!project.demoUrl;
+  if(project.demoUrl) {
+    demoLink.href=project.demoUrl;
+    demoLink.textContent=window.PortfolioView.linkLabel(project)+' ↗';
+  } else demoLink.removeAttribute('href');
+  element('previewLink').classList.toggle('dark',!project.demoUrl);
+  element('previewLink').textContent='查看项目介绍 →';
   element('next').textContent=state.first===6&&(!state.order||state.position===6)?'开启新一轮 ↻':'继续扭蛋 ↻';
   element('preview').hidden=false;
   element('closeIcon').focus({preventScroll:true}); soundEffect('open');
@@ -208,7 +222,7 @@ function collection() {
     button.onclick=()=>{ activeFilter=button.dataset.filter; collection(); };
     if(focused===button.dataset.filter) button.focus({preventScroll:true});
   });
-  element('grid').innerHTML=portfolioProjects.map((project,index)=>activeFilter!=='ALL'&&activeFilter!==project.category?'':`<a class="card" href="#project/${project.id}"><div class="art" style="--art:${project.bg}">${projectArtwork(project,index)}</div><div class="cardcopy"><div class="cardmeta"><span>${String(index+1).padStart(2,'0')} / ${String(portfolioProjects.length).padStart(2,'0')}</span><span>${categoryLabels[project.category]}</span></div><h3>${escapeContent(project.title)}<span class="project-en">${escapeContent(project.english)}</span></h3><p>${escapeContent(project.description)}</p><span class="textlink">查看项目 ↗</span></div></a>`).join('');
+  element('grid').innerHTML=portfolioProjects.map((project,index)=>activeFilter!=='ALL'&&activeFilter!==project.category?'':`<article class="card"><a class="card-main" href="#project/${project.id}"><div class="art" style="--art:${project.bg}">${projectArtwork(project,index)}</div><div class="cardcopy"><div class="cardmeta"><span>${String(index+1).padStart(2,'0')} / ${String(portfolioProjects.length).padStart(2,'0')}</span><span>${categoryLabels[project.category]}</span></div><h3>${escapeContent(project.title)}<span class="project-en">${escapeContent(project.english)}</span></h3><p>${escapeContent(project.description)}</p></div></a><div class="card-actions"><a class="textlink" href="#project/${project.id}">项目介绍 →</a>${project.demoUrl?`<a class="card-demo-link" href="${escapeContent(project.demoUrl)}" target="_blank" rel="noopener noreferrer">${escapeContent(window.PortfolioView.linkLabel(project))} ↗</a>`:''}</div></article>`).join('');
 }
 function block(title,content){return `<div class="block"><p class="eyebrow">${title}</p><p>${content}</p></div>`}
 function detail(index) {
@@ -216,7 +230,8 @@ function detail(index) {
   const sectionNames=['01 / 项目概览','02 / 用户与需求','03 / 产品思考','04 / 设计与实现','05 / 成果与复盘','项目材料 / MATERIALS'];
   const sectionDefaults=[`${project.focus}\n项目时间、背景与目标待补充`,'待补充：目标用户、观察到的需求与业务问题。','待补充：产品定位、产品结构、核心功能与使用流程。','待补充：原型、关键设计决策、实际 AI 应用及使用的工具。','待补充：可核实的成果、个人贡献、遇到的问题与复盘。未验证的数据不展示。','待补充：项目截图、原型链接或过程材料。'];
   const sections=window.PortfolioContent.sectionKeys.map((name,position)=>block(sectionNames[position],`<span class="content-copy ${project.sections?.[name]?'':'placeholder'}">${escapeContent(project.sections?.[name]||sectionDefaults[position])}</span>`)).join('');
-  element('detailPage').innerHTML=`<a class="textlink" href="#works">← 返回作品收藏</a><div class="detailintro"><div><p class="eyebrow">${String(index+1).padStart(2,'0')} / ${String(portfolioProjects.length).padStart(2,'0')} · ${escapeContent(project.type)}</p><h1>${escapeContent(project.title)}</h1><p class="project-en">${escapeContent(project.english)}</p><p class="muted">${escapeContent(project.description)}</p><p class="eyebrow">项目角色 / MY ROLE</p><p>${escapeContent(project.role)}</p>${project.demoUrl?`<a class="textlink content-material-link" href="${escapeContent(project.demoUrl)}" target="_blank" rel="noopener noreferrer">访问项目 / LIVE DEMO ↗</a>`:''}</div><div class="detailart" style="--art:${project.bg}">${projectArtwork(project,index)}</div></div><div class="blocks">${sections}</div><div class="detailnav"><a href="#project/${previous.id}">← ${escapeContent(previous.title)}</a><a href="#works">全部作品 ↑</a><a href="#project/${next.id}">${escapeContent(next.title)} →</a></div>`;
+  element('detailPage').innerHTML=`<a class="textlink" href="#works">← 返回作品收藏</a><div class="detailintro"><div><p class="eyebrow">${String(index+1).padStart(2,'0')} / ${String(portfolioProjects.length).padStart(2,'0')} · ${escapeContent(project.type)}</p><h1>${escapeContent(project.title)}</h1><p class="project-en">${escapeContent(project.english)}</p><p class="muted">${escapeContent(project.description)}</p><p class="eyebrow">项目角色 / MY ROLE</p><p>${escapeContent(project.role)}</p>${window.PortfolioView.projectActions(project)}</div><div class="detailart" style="--art:${project.bg}">${projectArtwork(project,index)}</div></div>${window.PortfolioView.experience(project,index)}<div class="blocks">${sections}</div><div class="detailnav"><a href="#project/${previous.id}">← ${escapeContent(previous.title)}</a><a href="#works">全部作品 ↑</a><a href="#project/${next.id}">${escapeContent(next.title)} →</a></div>`;
+  window.PortfolioView.bindExperience(project);
   document.title=`${project.title} — My Inspiration Gacha`;
 }
 function syncPet(){const away=element('homePage').hidden||element('home').getBoundingClientRect().bottom<Math.min(innerHeight*.5,360);element('petDock').hidden=!away}
@@ -226,6 +241,7 @@ function route() {
   const isDetail=index>=0;
   if(hash&&hash!=='home') { cancelDraw(); characterMotion.finishEntry(); closePreview(); machine(); }
   element('homePage').hidden=isDetail; element('detailPage').hidden=!isDetail;
+  if(!isDetail) element('detailPage').replaceChildren();
   if(isDetail) { detail(index); window.scrollTo({top:0,behavior:'instant'}); }
   else {
     document.title='MY CAPSULES — AI 产品作品集';

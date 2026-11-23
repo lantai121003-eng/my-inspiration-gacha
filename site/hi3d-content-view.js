@@ -20,6 +20,50 @@ window.PortfolioReady = (async () => {
 })();
 window.PortfolioView = {
   escape(value) { return String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character])); },
+  linkLabel(project) { return project.linkLabel || window.PortfolioContent.linkTypes[project.linkType || 'demo']; },
+  projectActions(project, className = '') {
+    const escape = this.escape;
+    const primary = project.demoUrl ? `<a class="button primary" href="${escape(project.demoUrl)}" target="_blank" rel="noopener noreferrer">${escape(this.linkLabel(project))} ↗</a>` : '';
+    const resources = (project.resourceLinks || []).map(item => `<a class="button" href="${escape(item.url)}" target="_blank" rel="noopener noreferrer">${escape(item.label)} ↗</a>`).join('');
+    return primary || resources ? `<div class="project-actions ${className}">${primary}${resources}</div>` : '';
+  },
+  experience(project, index) {
+    if (!project.demoUrl || project.displayMode !== 'embed') return '';
+    const escape = this.escape;
+    const host = new URL(project.demoUrl).hostname;
+    return `<section class="project-experience" aria-labelledby="experienceTitle"><div class="experience-heading"><div><p class="eyebrow">LIVE EXPERIENCE / 在线体验</p><h2 id="experienceTitle">不止看介绍，亲自试一试。</h2></div><a class="textlink" href="${escape(project.demoUrl)}" target="_blank" rel="noopener noreferrer">新窗口打开 ↗</a></div><div class="demo-browser"><div class="browser-bar"><span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="browser-host">${escape(host)}</span><span class="browser-label">交互演示</span></div><div class="experience-stage" id="experienceStage">${project.cover ? `<img class="demo-poster" src="${escape(project.cover)}" alt="${escape(project.title)}页面预览" loading="lazy" decoding="async">` : `<div class="demo-poster demo-placeholder" style="--art:${project.bg}"><span>${escape(project.symbol)}</span></div>`}<div class="experience-invite"><span>在作品集中体验这个项目</span><button class="button primary" type="button" id="loadExperience">加载交互演示 →</button><small>点击后连接外部网站，不会提前加载。</small></div></div><div class="experience-footer"><p id="experienceStatus" role="status">嵌入受原网站限制；如遇空白、登录或布局问题，请新窗口打开。</p><button class="button" id="stopExperience" type="button" hidden>关闭演示</button></div></div></section>`;
+  },
+  bindExperience(project) {
+    const load = document.getElementById('loadExperience');
+    if (!load) return;
+    const stage = document.getElementById('experienceStage');
+    const original = stage.innerHTML;
+    const stop = document.getElementById('stopExperience');
+    const status = document.getElementById('experienceStatus');
+    const start = () => {
+      const frame = document.createElement('iframe');
+      frame.title = project.title + ' · 在线交互演示';
+      frame.className = 'experience-frame';
+      frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox');
+      frame.referrerPolicy = 'no-referrer';
+      frame.allowFullscreen = true;
+      frame.src = project.demoUrl;
+      stage.replaceChildren(frame);
+      stage.classList.add('is-live');
+      stop.hidden = false;
+      status.textContent = '已请求加载外部页面。如遇空白、登录或无法操作，请使用上方「新窗口打开」。';
+      frame.focus();
+    };
+    load.onclick = start;
+    stop.onclick = () => {
+      stage.classList.remove('is-live');
+      stage.innerHTML = original;
+      stop.hidden = true;
+      status.textContent = '演示已关闭。如遇原网站限制，可在新窗口继续体验。';
+      document.getElementById('loadExperience').onclick = start;
+      document.getElementById('loadExperience').focus();
+    };
+  },
   apply(content) {
     const paragraph = (selector, text) => {
       const node = document.querySelector(selector);

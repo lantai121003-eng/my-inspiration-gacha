@@ -3,6 +3,7 @@
   const coreIds = ['ai-fashion-saas', 'real-business-product', 'ai-3d-customization', 'birthday-website', 'photography', 'match-3-game'];
   const categories = ['AI PRODUCTS', 'EXPERIMENTS', 'CREATIVE WORKS'];
   const sectionKeys = ['overview', 'problem', 'thinking', 'design', 'outcome', 'materials'];
+  const linkTypes = Object.freeze({ demo: '体验产品 Demo', website: '访问网站', prototype: '查看交互原型', document: '阅读项目文档', gallery: '查看作品集', video: '观看视频', game: '试玩游戏', source: '查看源码' });
   function text(value, label, maximum = 6000, required = false) {
     if (typeof value !== 'string' || value.length > maximum || /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(value) || (required && !value.trim())) throw new Error(`${label}为空、过长或包含无效字符`);
     return value.trim();
@@ -35,6 +36,18 @@
     }
     output.cover = asset(value.cover || '', 'cover');
     output.demoUrl = link(value.demoUrl || '');
+    output.linkType = value.linkType === undefined ? 'demo' : value.linkType;
+    if (!Object.hasOwn(linkTypes, output.linkType)) throw new Error('请选择有效的项目链接类型');
+    output.linkLabel = text(value.linkLabel || '', '主按钮文案', 40);
+    output.displayMode = value.displayMode === undefined ? 'external' : value.displayMode;
+    if (!['external', 'embed'].includes(output.displayMode)) throw new Error('请选择有效的项目展示方式');
+    const resources = value.resourceLinks === undefined ? [] : value.resourceLinks;
+    if (!Array.isArray(resources) || resources.length > 4) throw new Error('每个项目最多添加 4 个补充链接');
+    output.resourceLinks = resources.map(item => {
+      if (!item || typeof item !== 'object' || Array.isArray(item)) throw new Error('补充链接格式不正确');
+      return { label: text(item.label, '补充链接名称', 40, true), url: link(item.url || '') };
+    });
+    if (output.resourceLinks.some(item => !item.url)) throw new Error('请填写补充链接地址，或移除空白链接');
     output.sections = {};
     for (const field of sectionKeys) output.sections[field] = text(value.sections?.[field] || '', field, 12000);
     return output;
@@ -57,7 +70,7 @@
   function references(value) {
     return [...new Set(value.projects.concat(value.extraProjects).map(item => item.cover).concat(value.resume.path).filter(Boolean))];
   }
-  const api = Object.freeze({ validate, asset, references, coreIds, categories, sectionKeys });
+  const api = Object.freeze({ validate, asset, references, coreIds, categories, sectionKeys, linkTypes });
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.PortfolioContent = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
