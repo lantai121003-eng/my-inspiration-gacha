@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
@@ -17,6 +18,8 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      PAGES_ARTIFACT: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -33,7 +36,30 @@ jobs:
       - name: Upload website
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
         with:
+          name: ${{ env.PAGES_ARTIFACT }}
           path: _site
+      - name: Wait for uploaded artifact
+        timeout-minutes: 2
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in $(seq 1 12); do
+            if count="$(gh api --paginate --slurp "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts?per_page=100" --jq "[.[].artifacts[] | select(.name == \"${PAGES_ARTIFACT}\" and .expired == false)] | length")"; then
+              if [ "$count" -eq 1 ]; then
+                echo "Artifact ${PAGES_ARTIFACT} is available for deployment."
+                exit 0
+              elif [ "$count" -gt 1 ]; then
+                echo "::error::Multiple artifacts match ${PAGES_ARTIFACT}; deployment stopped."
+                exit 1
+              fi
+            fi
+            echo "Waiting for artifact metadata (${attempt}/12)."
+            if [ "$attempt" -lt 12 ]; then sleep 5; fi
+          done
+          echo "::error::Artifact ${PAGES_ARTIFACT} did not become available; no deployment was started."
+          exit 1
       - name: Deploy website
         id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
+        with:
+          artifact_name: ${{ env.PAGES_ARTIFACT }}
