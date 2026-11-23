@@ -1,4 +1,4 @@
-const projects = [
+let projects = [
   {id:'ai-fashion-saas', title:'AI 女装电商 SaaS', english:'AI FASHION SAAS', category:'AI PRODUCTS', type:'AI 产品', description:'面向中小女装电商商家的 AI SaaS 平台，探索 AI 在业务场景中的应用。', role:'具体职责与参与范围待补充', symbol:'✧', color:'#a9c7d7', pale:'#eaf6fa', bg:'#e4eef2', focus:'产品定位、目标用户、业务痛点、AI 能力应用、功能设计与商业价值。'},
   {id:'real-business-product', title:'真实业务线上产品', english:'REAL BUSINESS PRODUCT', category:'AI PRODUCTS', type:'业务产品', description:'在真实业务场景中参与的线上产品，围绕实际需求展开产品实践。', role:'具体职责与参与范围待补充', symbol:'▤', color:'#dec6a3', pale:'#fff6e8', bg:'#f4eddf', focus:'真实业务背景、用户需求、产品方案、实际参与工作与可核实的项目成果。'},
   {id:'ai-3d-customization', title:'AI + 3D 定制平台', english:'AI + 3D CUSTOMIZATION', category:'EXPERIMENTS', type:'AI 交互实验', description:'一个结合 AI 与 3D 的定制平台 Demo，探索产品流程与交互体验。', role:'具体职责与参与范围待补充', symbol:'◇', color:'#c5b6da', pale:'#f5edfc', bg:'#eee8f4', focus:'AI 与 3D 的结合方式、用户流程、交互体验与技术应用探索。'},
@@ -6,6 +6,9 @@ const projects = [
   {id:'photography', title:'摄影作品', english:'PHOTOGRAPHY', category:'CREATIVE WORKS', type:'视觉创作', description:'通过摄影记录观察，探索构图、光影与视觉表达。', role:'摄影创作', symbol:'◎', color:'#b7d5c8', pale:'#effaf4', bg:'#e8f1eb', focus:'作品选择、构图、光影与创作思考。'},
   {id:'match-3-game', title:'三消小游戏', english:'MATCH-3 GAME', category:'EXPERIMENTS', type:'游戏原型', description:'独立制作的简单三消小游戏，探索规则、交互与实现。', role:'交互设计 / 独立制作', symbol:'▦', color:'#c4d5bd', pale:'#f4f8ec', bg:'#f0efe6', focus:'游戏规则、操作反馈、原型过程与实现复盘。'}
 ];
+let portfolioProjects = projects;
+const escapeContent = value => window.PortfolioView.escape(value);
+const projectArtwork = (project,index) => project.cover ? `<img class="content-cover" src="${escapeContent(project.cover)}" alt="${escapeContent(project.title)}作品封面" loading="lazy">` : capsule(project,index);
 const categoryLabels = {'ALL':'全部作品', 'AI PRODUCTS':'AI 产品', 'EXPERIMENTS':'交互实验', 'CREATIVE WORKS':'创意作品'};
 const capsuleDiameter = 80;
 const capsuleLayout = [
@@ -53,10 +56,10 @@ function positionDrop() {
 function save(){try{localStorage.setItem(key,JSON.stringify(state))}catch{}}
 function capsule(project,index,button=false) {
   const tag=button?'button':'span';
-  const attributes=button?`type="button" aria-label="查看${project.title}" data-project="${index}"`:'';
-  const layout=capsuleLayout[index];
+  const attributes=button?`type="button" aria-label="查看${escapeContent(project.title)}" data-project="${index}"`:'';
+  const layout=capsuleLayout[index%capsuleLayout.length];
   const variables=`--home-x:${layout.x}px;--home-y:${layout.y}px;--size:${capsuleDiameter}px;--layer:${layout.layer};--angle:${layout.angle}deg;--rest-time:${layout.rest}s;--rest-x:${index%2?-.6:.7}px;--mix-x:${layout.mixX}px;--mix-y:${layout.mixY}px;--exit-x:${171-layout.x-capsuleDiameter/2}px;--exit-y:${348-layout.y-capsuleDiameter/2}px;`;
-  return `<${tag} class="capsule" ${attributes} style="--tint:${project.color};--pale:${project.pale};--delay:${index*-2.13}s;${variables}"><b aria-hidden="true">${project.symbol}</b></${tag}>`;
+  return `<${tag} class="capsule" ${attributes} style="--tint:${project.color};--pale:${project.pale};--delay:${index*-2.13}s;${variables}"><b aria-hidden="true">${escapeContent(project.symbol)}</b></${tag}>`;
 }
 function shuffle(){const order=projects.map((_,index)=>index);for(let index=order.length-1;index>0;index--){const random=new Uint32Array(1);crypto.getRandomValues(random);const swap=random[0]%(index+1);[order[index],order[swap]]=[order[swap],order[index]]}return order}
 function status() {
@@ -171,7 +174,7 @@ function showPreview(index) {
   if(!lastFocus?.isConnected) lastFocus=document.activeElement;
   state.phase='preview'; save(); machine();
   element('previewArt').style.setProperty('--art',project.bg);
-  element('previewArt').innerHTML=capsule(project,index);
+  element('previewArt').innerHTML=projectArtwork(project,index);
   element('previewCategory').textContent=`${String(index+1).padStart(2,'0')} / ${project.type}`;
   element('previewTitle').textContent=project.title;
   element('previewEnglish').textContent=project.english;
@@ -205,18 +208,21 @@ function collection() {
     button.onclick=()=>{ activeFilter=button.dataset.filter; collection(); };
     if(focused===button.dataset.filter) button.focus({preventScroll:true});
   });
-  element('grid').innerHTML=projects.map((project,index)=>activeFilter!=='ALL'&&activeFilter!==project.category?'':`<a class="card" href="#project/${project.id}"><div class="art" style="--art:${project.bg}">${capsule(project,index)}</div><div class="cardcopy"><div class="cardmeta"><span>${String(index+1).padStart(2,'0')} / 06</span><span>${categoryLabels[project.category]}</span></div><h3>${project.title}<span class="project-en">${project.english}</span></h3><p>${project.description}</p><span class="textlink">查看项目 ↗</span></div></a>`).join('');
+  element('grid').innerHTML=portfolioProjects.map((project,index)=>activeFilter!=='ALL'&&activeFilter!==project.category?'':`<a class="card" href="#project/${project.id}"><div class="art" style="--art:${project.bg}">${projectArtwork(project,index)}</div><div class="cardcopy"><div class="cardmeta"><span>${String(index+1).padStart(2,'0')} / ${String(portfolioProjects.length).padStart(2,'0')}</span><span>${categoryLabels[project.category]}</span></div><h3>${escapeContent(project.title)}<span class="project-en">${escapeContent(project.english)}</span></h3><p>${escapeContent(project.description)}</p><span class="textlink">查看项目 ↗</span></div></a>`).join('');
 }
 function block(title,content){return `<div class="block"><p class="eyebrow">${title}</p><p>${content}</p></div>`}
 function detail(index) {
-  const project=projects[index], previous=projects[(index+5)%6], next=projects[(index+1)%6];
-  element('detailPage').innerHTML=`<a class="textlink" href="#works">← 返回作品收藏</a><div class="detailintro"><div><p class="eyebrow">${String(index+1).padStart(2,'0')} / 06 · ${project.type}</p><h1>${project.title}</h1><p class="project-en">${project.english}</p><p class="muted">${project.description}</p><p class="eyebrow">项目角色 / MY ROLE</p><p>${project.role}</p></div><div class="detailart" style="--art:${project.bg}">${capsule(project,index)}</div></div><div class="blocks">${block('01 / 项目概览',`${project.focus}<br><span class="placeholder">项目时间、背景与目标待补充</span>`)}${block('02 / 用户与需求','<span class="placeholder">待补充：目标用户、观察到的需求与业务问题。</span>')}${block('03 / 产品思考','<span class="placeholder">待补充：产品定位、产品结构、核心功能与使用流程。</span>')}${block('04 / 设计与实现','<span class="placeholder">待补充：原型、关键设计决策、实际 AI 应用及使用的工具。</span>')}${block('05 / 成果与复盘','<span class="placeholder">待补充：可核实的成果、个人贡献、遇到的问题与复盘。未验证的数据不展示。</span>')}${block('项目材料 / MATERIALS','<span class="placeholder">待补充：项目截图、原型链接或过程材料。</span>')}</div><div class="detailnav"><a href="#project/${previous.id}">← ${previous.title}</a><a href="#works">全部作品 ↑</a><a href="#project/${next.id}">${next.title} →</a></div>`;
-  document.title=`${project.title} — MY CAPSULES`;
+  const project=portfolioProjects[index], previous=portfolioProjects[(index+portfolioProjects.length-1)%portfolioProjects.length], next=portfolioProjects[(index+1)%portfolioProjects.length];
+  const sectionNames=['01 / 项目概览','02 / 用户与需求','03 / 产品思考','04 / 设计与实现','05 / 成果与复盘','项目材料 / MATERIALS'];
+  const sectionDefaults=[`${project.focus}\n项目时间、背景与目标待补充`,'待补充：目标用户、观察到的需求与业务问题。','待补充：产品定位、产品结构、核心功能与使用流程。','待补充：原型、关键设计决策、实际 AI 应用及使用的工具。','待补充：可核实的成果、个人贡献、遇到的问题与复盘。未验证的数据不展示。','待补充：项目截图、原型链接或过程材料。'];
+  const sections=window.PortfolioContent.sectionKeys.map((name,position)=>block(sectionNames[position],`<span class="content-copy ${project.sections?.[name]?'':'placeholder'}">${escapeContent(project.sections?.[name]||sectionDefaults[position])}</span>`)).join('');
+  element('detailPage').innerHTML=`<a class="textlink" href="#works">← 返回作品收藏</a><div class="detailintro"><div><p class="eyebrow">${String(index+1).padStart(2,'0')} / ${String(portfolioProjects.length).padStart(2,'0')} · ${escapeContent(project.type)}</p><h1>${escapeContent(project.title)}</h1><p class="project-en">${escapeContent(project.english)}</p><p class="muted">${escapeContent(project.description)}</p><p class="eyebrow">项目角色 / MY ROLE</p><p>${escapeContent(project.role)}</p>${project.demoUrl?`<a class="textlink content-material-link" href="${escapeContent(project.demoUrl)}" target="_blank" rel="noopener noreferrer">访问项目 / LIVE DEMO ↗</a>`:''}</div><div class="detailart" style="--art:${project.bg}">${projectArtwork(project,index)}</div></div><div class="blocks">${sections}</div><div class="detailnav"><a href="#project/${previous.id}">← ${escapeContent(previous.title)}</a><a href="#works">全部作品 ↑</a><a href="#project/${next.id}">${escapeContent(next.title)} →</a></div>`;
+  document.title=`${project.title} — My Inspiration Gacha`;
 }
 function syncPet(){const away=element('homePage').hidden||element('home').getBoundingClientRect().bottom<Math.min(innerHeight*.5,360);element('petDock').hidden=!away}
 function route() {
   const hash=decodeURIComponent(location.hash.slice(1));
-  const index=hash.startsWith('project/')?projects.findIndex(project=>project.id===hash.slice(8)):-1;
+  const index=hash.startsWith('project/')?portfolioProjects.findIndex(project=>project.id===hash.slice(8)):-1;
   const isDetail=index>=0;
   if(hash&&hash!=='home') { cancelDraw(); characterMotion.finishEntry(); closePreview(); machine(); }
   element('homePage').hidden=isDetail; element('detailPage').hidden=!isDetail;
@@ -290,6 +296,12 @@ const sceneObserver=new IntersectionObserver(entries=>{
 },{threshold:0});
 sceneObserver.observe(document.querySelector('.scene'));
 document.addEventListener('visibilitychange',syncVisibility);
-machine(); collection(); route(); syncMotion();
-if(state.phase==='preview') showPreview(state.drawn);
-else characterMotion.enter();
+const contentButtons=[element('drawTop'),element('knob'),element('girl')];
+contentButtons.forEach(button=>button.disabled=true);
+window.PortfolioReady.then(content=>{
+  if(content){projects=content.projects;portfolioProjects=content.projects.concat(content.extraProjects);window.PortfolioView.apply(content);}
+  machine(); collection(); route(); syncMotion();
+  contentButtons.forEach(button=>button.disabled=false);
+  if(state.phase==='preview') showPreview(state.drawn);
+  else characterMotion.enter();
+});
