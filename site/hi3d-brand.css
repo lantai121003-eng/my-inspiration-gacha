@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('hi3d-nunito-sans.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+.nav .brand-name {
+  font-family: 'Nunito Sans', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .025em;
+  color: #354958;
+  white-space: nowrap;
+}
+
+.nav .brandmark {
+  flex-shrink: 0;
+  width: 31px;
+  height: 31px;
+  margin-right: -6px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.nav .brandmark svg {
+  position: relative;
+  top: -2px;
+  width: 31px;
+  height: 31px;
+  display: block;
+  overflow: visible;
+  color: #899eae;
+}
+
+.nav .brandmark .logo-capsule {
+  transform-origin: 14.4px 18px;
+  transition: transform 440ms cubic-bezier(.2, 1.25, .35, 1);
+}
+
+@media (hover: hover) {
+  .nav .brand:hover .logo-capsule { transform: rotate(12deg); }
+}
+
+.nav .brand:active .logo-capsule {
+  transform: scale(.92);
+  transition-duration: 110ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav .brandmark .logo-capsule { transition: none; }
+}

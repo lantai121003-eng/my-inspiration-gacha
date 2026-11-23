@@ -1,0 +1,39 @@
+.machine{filter:drop-shadow(0 16px 12px #526a6b3d) drop-shadow(0 4px 3px #84949039)}
+.machine:before{opacity:.5;filter:blur(4px);animation:halo-colors 16s ease-in-out infinite}
+.machine.dispensing:before{opacity:.56;filter:blur(4px);animation-duration:4s}
+.globe{top:26px;left:1px;width:348px;height:348px;border-radius:50%;animation:breathing-glass 16s ease-in-out infinite}
+.globe:before{height:175px}
+.lid{top:12px;left:105px;width:140px;height:27px}
+.rim{top:356px;left:27px;width:296px;height:24px}
+.body{top:367px;left:42px;width:266px;height:145px;border-radius:20px 20px 32px 32px}
+.body:before{border-radius:14px 14px 26px 26px}
+.machinebrand{top:12px}
+.knob{left:100px;top:33px}
+.slot{left:97px;bottom:9px}
+.foot{left:37px;width:276px;bottom:-5px}
+.machine.dispensing{animation:gentle-rattle 1.7s ease-in-out both}
+.machine.dispensing .globe{animation:gentle-vessel 1.7s ease-in-out both}
+.machine.dispensing .globe .capsule:nth-child(1){--dx:-14px;--dy:18px}
+.machine.dispensing .globe .capsule:nth-child(2){--dx:19px;--dy:-12px}
+.machine.dispensing .globe .capsule:nth-child(3){--dx:-17px;--dy:-14px}
+.machine.dispensing .globe .capsule:nth-child(4){--dx:17px;--dy:-16px}
+.machine.dispensing .globe .capsule:nth-child(5){--dx:-13px;--dy:-20px}
+.machine.dispensing .globe .capsule:nth-child(6){--dx:-18px;--dy:-14px}
+@keyframes gentle-rattle{0%,100%{translate:0 0;rotate:0deg}21%,54%{translate:-.8px .4px;rotate:-.16deg}38%,70%{translate:.8px -.4px;rotate:.16deg}86%{translate:0 -.5px;rotate:0deg}}
+@keyframes gentle-vessel{0%,100%{translate:0 0}27%,65%{translate:-1px .5px}43%,78%{translate:1px -.5px}}
+.girl:not(.arriving):not(.turning):not(.celebrating){animation:none}
+.girl:not(.arriving):not(.turning):not(.celebrating):after{display:none}
+.girl.celebrating{animation:none}
+.previewart{background:radial-gradient(circle at 50% 32%,#fff,var(--art))}
+.previewart .capsule{position:relative;width:150px;height:150px;z-index:2;transform:rotate(-12deg);background:radial-gradient(circle at 29% 21%,#fff 0%,#ffffffb5 10%,var(--pale) 35%,var(--tint) 74%,#899aaeaa);border:1px solid #fff;box-shadow:inset 5px 5px 8px #ffffffd0,inset -8px -9px 14px #52657d55,0 12px 16px #475d6145;animation:none}
+.previewart .capsule:before{content:"";position:absolute;inset:auto;left:8px;right:8px;top:6px;width:auto;height:25px;border:0;border-top:2px solid #fff9;border-radius:50%;background:transparent;box-shadow:none;clip-path:none;animation:none;transform:rotate(-17deg);opacity:1}
+.previewart .capsule:after{content:"";position:absolute;inset:auto;left:4px;right:4px;top:52%;width:auto;height:2px;border:0;border-radius:0;background:#ffffffc9;box-shadow:0 2px 2px #63758a48;clip-path:none;animation:none;transform:rotate(-8deg);opacity:1}
+.previewart .capsule b{animation:none;opacity:1}
+.previewart .project-cover{display:none}
+@media(max-width:750px){.previewart .capsule{width:90px;height:90px}}
+@media(prefers-reduced-motion:reduce){.machine.dispensing,.machine.dispensing .globe{animation:none}.previewart .capsule{display:block}}
+body.no-motion .machine.dispensing,body.no-motion .machine.dispensing .globe{animation:none}
+body.no-motion .previewart .capsule{display:block}
+@keyframes breathing-glass{0%,100%{box-shadow:inset 0 0 0 2px #a6c3c549,inset 17px 8px 25px #fff9,inset -18px -12px 24px #7296a052,inset 0 -18px 17px #7c9d9470,0 3px 0 #9cbbbc91,0 0 16px 7px #a9cbeaab,0 0 40px 13px #b8d8f07a}25%{box-shadow:inset 0 0 0 2px #a6c3c549,inset 17px 8px 25px #fff9,inset -18px -12px 24px #7296a052,inset 0 -18px 17px #7c9d9470,0 3px 0 #9cbbbc91,0 0 16px 7px #cab5e9b0,0 0 40px 13px #dac4f17a}50%{box-shadow:inset 0 0 0 2px #a6c3c549,inset 17px 8px 25px #fff9,inset -18px -12px 24px #7296a052,inset 0 -18px 17px #7c9d9470,0 3px 0 #9cbbbc91,0 0 16px 7px #a5d9c5ab,0 0 40px 13px #bde8d47a}75%{box-shadow:inset 0 0 0 2px #a6c3c549,inset 17px 8px 25px #fff9,inset -18px -12px 24px #7296a052,inset 0 -18px 17px #7c9d9470,0 3px 0 #9cbbbc91,0 0 16px 7px #ead1a9ab,0 0 40px 13px #f4ddbd7a}}
+@media(prefers-reduced-motion:reduce){.globe{animation:none}}
+body.no-motion .globe{animation:none}

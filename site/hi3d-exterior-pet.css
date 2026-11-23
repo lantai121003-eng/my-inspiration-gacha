@@ -1,0 +1,18 @@
+.machine:before{opacity:.95;animation:halo-colors 16s ease-in-out infinite}
+.globe{animation:none;box-shadow:inset 12px 11px 25px #fff,inset -21px -14px 25px #a6b9b37d,0 10px 16px #a2b5aa35}
+.globe:after{background:transparent;mix-blend-mode:normal;animation:globe-glimmer 9s ease-in-out infinite}
+.girl{left:85px;top:386px;width:105px;height:122px;filter:drop-shadow(1px 3px 2px #6259575a);transform-style:preserve-3d}
+.girl img{width:100%;height:100%;object-fit:contain}
+.girl:hover:not(:disabled){filter:drop-shadow(2px 4px 3px #62595770)}
+.girl.arriving{animation:girl-approach 2.15s linear both;pointer-events:none}
+.girl.arriving img{opacity:0}
+.girl.arriving:after{content:"";position:absolute;inset:0;background:url('hi3d-girl-walk-sheet.png') 0 0 / 300% 100% no-repeat;animation:girl-steps .45s steps(3,end) infinite}
+.girl.turning{animation:girl-turns-knob 1.7s ease-in-out both;transform-origin:75% 85%}
+.girl.turning img{animation:none}
+@keyframes girl-approach{0%{transform:translateX(-180px) translateY(0) rotateY(14deg)}18%{transform:translateX(-152px) translateY(0) rotateY(10deg)}31%{transform:translateX(-126px) translateY(-13px) rotateY(6deg)}43%{transform:translateX(-100px) translateY(0) rotateY(5deg)}60%{transform:translateX(-73px) translateY(0) rotateY(0)}71%{transform:translateX(-47px) translateY(-12px) rotateY(-7deg)}81%{transform:translateX(-29px) translateY(0) rotateY(-4deg)}100%{transform:translateX(0) translateY(0) rotateY(0)}}
+@keyframes girl-steps{from{background-position:0 0}to{background-position:150% 0}}
+@keyframes girl-turns-knob{0%,100%{transform:translate(0,0) rotateY(0) rotateZ(0)}18%{transform:translate(5px,-2px) rotateY(-14deg) rotateZ(3deg)}36%{transform:translate(8px,-3px) rotateY(-18deg) rotateZ(5deg)}55%{transform:translate(2px,0) rotateY(9deg) rotateZ(-3deg)}78%{transform:translate(6px,-1px) rotateY(-11deg) rotateZ(4deg)}}
+@media(max-width:750px){.girl.arriving{animation-name:girl-approach-mobile}@keyframes girl-approach-mobile{0%{transform:translateX(-120px) translateY(0) rotateY(12deg)}30%{transform:translateX(-85px) translateY(-12px) rotateY(6deg)}47%{transform:translateX(-61px) translateY(0) rotateY(0)}70%{transform:translateX(-29px) translateY(-12px) rotateY(-7deg)}100%{transform:translateX(0) translateY(0) rotateY(0)}}}
+@media(prefers-reduced-motion:reduce){.machine:before,.girl.arriving,.girl.arriving:after,.girl.turning{animation:none}.girl.arriving img{opacity:1}.girl.arriving:after{display:none}}
+body.no-motion .machine:before,body.no-motion .girl.arriving,body.no-motion .girl.arriving:after,body.no-motion .girl.turning{animation:none}
+body.no-motion .girl.arriving img{opacity:1}body.no-motion .girl.arriving:after{display:none}

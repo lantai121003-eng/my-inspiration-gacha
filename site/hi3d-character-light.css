@@ -1,0 +1,14 @@
+.machine:before{opacity:.2;animation:none}
+.globe{animation:inner-lantern 16s ease-in-out infinite;will-change:auto}
+.globe:after{border-right:8px solid #ffffff8a;border-top:5px solid #ffffff95;background:radial-gradient(ellipse at 53% 81%,#aad6f58c,transparent 58%);animation:inner-wash 16s ease-in-out infinite;mix-blend-mode:screen}
+@keyframes inner-lantern{0%,100%{box-shadow:inset 0 -24px 64px 16px #8dc4e9a0,inset 15px 12px 22px #fff, inset -15px -12px 22px #91a6aa6b}25%{box-shadow:inset 0 -24px 64px 16px #c5a8e8a5,inset 15px 12px 22px #fff,inset -15px -12px 22px #91a6aa6b}50%{box-shadow:inset 0 -24px 64px 16px #88d5b4a0,inset 15px 12px 22px #fff,inset -15px -12px 22px #91a6aa6b}75%{box-shadow:inset 0 -24px 64px 16px #efd29cac,inset 15px 12px 22px #fff,inset -15px -12px 22px #91a6aa6b}}
+@keyframes inner-wash{0%,100%{background:radial-gradient(ellipse at 53% 81%,#88c6ed9a,transparent 62%)}25%{background:radial-gradient(ellipse at 53% 81%,#c8a9eea6,transparent 62%)}50%{background:radial-gradient(ellipse at 53% 81%,#87d9b49a,transparent 62%)}75%{background:radial-gradient(ellipse at 53% 81%,#ebd094a6,transparent 62%)}}
+.girl{width:84px;height:122px;top:386px;filter:drop-shadow(2px 4px 2px #5f666450)}
+.girl:hover:not(:disabled){filter:drop-shadow(3px 5px 3px #5f66646b)}
+.girl.arriving{animation:girl-arrives 2.45s cubic-bezier(.2,.64,.45,1) both}
+.girl.turning{animation:girl-helps 1.7s ease-in-out both;transform-origin:70% 85%}
+.girl.turning img{animation:none}
+@keyframes girl-arrives{0%{transform:translate(-90vw,0) rotate(-8deg);opacity:0}12%{opacity:1}23%{transform:translate(-69vw,-13px) rotate(5deg)}37%{transform:translate(-53vw,0) rotate(-5deg)}52%{transform:translate(-38vw,-14px) rotate(5deg)}67%{transform:translate(-24vw,0) rotate(-5deg)}82%{transform:translate(-10vw,-11px) rotate(4deg)}100%{transform:translate(0,0) rotate(0)}}
+@keyframes girl-helps{0%,100%{transform:translate(0,0) rotate(0)}17%,47%,76%{transform:translate(4px,-4px) rotate(5deg)}32%,62%{transform:translate(0,0) rotate(-3deg)}}
+@media(prefers-reduced-motion:reduce){.globe,.globe:after,.girl.arriving,.girl.turning{animation:none}}
+body.no-motion .globe,body.no-motion .globe:after,body.no-motion .girl.arriving,body.no-motion .girl.turning{animation:none}

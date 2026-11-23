@@ -1,0 +1,16 @@
+.girl.arriving{animation:girl-entrance 3.35s cubic-bezier(.28,.12,.48,1) both;transform-origin:50% 100%;pointer-events:none}
+.girl.arriving:after{animation:girl-entrance-poses 3.35s steps(1,end) both;background:url('hi3d-pet-idle.png') center bottom / contain no-repeat}
+@keyframes girl-entrance{0%{transform:translateX(calc(-50vw - 70px)) translateY(0) scaleX(.94)}10%{transform:translateX(calc(-50vw + 2px)) translateY(0) scaleX(1)}23%{transform:translateX(calc(-36vw - 20px)) translateY(0)}32%{transform:translateX(calc(-27vw - 30px)) translateY(-25px) rotateZ(5deg)}40%{transform:translateX(calc(-21vw - 20px)) translateY(0) scaleY(.91) scaleX(1.06)}46%{transform:translateX(calc(-18vw - 16px)) translateY(0) scale(1)}59%{transform:translateX(calc(-12vw - 12px)) translateY(-30px) rotateZ(-5deg)}69%{transform:translateX(calc(-7vw - 8px)) translateY(0) scaleY(.88) scaleX(1.08)}76%{transform:translateX(calc(-5vw - 5px)) translateY(0) scale(1)}90%{transform:translateX(-12px) translateY(0)}100%{transform:translateX(0) translateY(0) rotateY(0)}}
+@keyframes girl-entrance-poses{0%,10%{background-image:url('hi3d-pet-idle.png');background-size:contain;clip-path:inset(0 0 0 46%)}11%,22%{background-image:url('hi3d-girl-walk-sheet.png');background-size:300% 100%;background-position:0 0;clip-path:none}23%,35%{background-image:url('hi3d-girl-walk-sheet.png');background-size:300% 100%;background-position:50% 0}36%,45%{background-position:100% 0}46%,63%{background-position:50% 0}64%,75%{background-position:0 0}76%,85%{background-position:100% 0}86%,100%{background-image:url('hi3d-girl-reach.png');background-size:contain;background-position:center bottom}}
+.pet-dock{position:fixed;right:24px;bottom:50px;width:88px;height:125px;border:0;padding:0;background:transparent;z-index:20;cursor:pointer;transform-origin:50% 100%;filter:drop-shadow(2px 4px 3px #5c606046)}
+.pet-dock[hidden]{display:none}
+.pet-dock:before{content:"";position:absolute;bottom:3px;left:16px;width:60px;height:7px;background:#6d6f6f32;border-radius:50%;filter:blur(3px)}
+.pet-dock .pet-frame{position:absolute;left:50%;bottom:0;width:auto;height:100%;max-width:none;transform:translateX(-50%);object-fit:contain;pointer-events:none;transform-origin:50% 98.5%;animation:pet-dock-sway 5.8s ease-in-out infinite}
+.pet-dock .pet-blink{opacity:0;animation:pet-dock-sway 5.8s ease-in-out infinite,pet-dock-blink 8.1s steps(1,end) infinite}
+@keyframes pet-dock-sway{0%,100%{transform:translateX(-50%) rotate(-.8deg)}50%{transform:translateX(-50%) rotate(.8deg)}}
+@keyframes pet-dock-blink{0%,46%,48%,89%,91%,100%{opacity:0}46.5%,47.5%,89.5%,90.5%{opacity:1}}
+.pet-dock:hover{filter:drop-shadow(2px 5px 4px #536d7680)}
+@media(max-width:750px){.pet-dock{right:8px;bottom:54px;width:69px;height:100px}.girl.arriving{animation-duration:2.95s}.girl.arriving:after{animation-duration:2.95s}}
+@media(prefers-reduced-motion:reduce){.girl.arriving,.girl.arriving:after,.pet-dock,.pet-dock .pet-frame{animation:none}.girl.arriving img{opacity:1}.girl.arriving:after{display:none}}
+body.no-motion .girl.arriving,body.no-motion .girl.arriving:after,body.no-motion .pet-dock,body.no-motion .pet-dock .pet-frame{animation:none}
+body.no-motion .girl.arriving img{opacity:1}body.no-motion .girl.arriving:after{display:none}

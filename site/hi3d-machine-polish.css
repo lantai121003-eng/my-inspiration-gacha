@@ -1,0 +1,31 @@
+.machine{animation:none;filter:drop-shadow(0 19px 13px #526a6b45) drop-shadow(0 4px 3px #8494903d)}
+.machine:before{opacity:.22;filter:blur(7px);animation-duration:24s}
+.machine:after{bottom:-17px;left:16px;width:318px;height:26px;background:radial-gradient(ellipse,#4f64645a 0%,#75878435 45%,transparent 75%);filter:blur(7px)}
+.scene:before{background:radial-gradient(ellipse at 53% 47%,#f4eaf2a6 0%,#f3f3f0b3 45%,transparent 73%)}
+.globe{border:3px solid #f8ffffed;background:radial-gradient(ellipse at 52% 79%,#c9ddd6ad 0%,#e5eeec9c 30%,#f9fdf8a8 65%,#e3ebebc4 100%);box-shadow:inset 0 0 0 2px #a6c3c549,inset 17px 8px 25px #fff9,inset -18px -12px 24px #7296a052,inset 0 -18px 17px #7c9d9470,0 3px 0 #9cbbbc91,0 12px 20px #627d7842}
+.globe:before{left:25px;top:28px;width:31px;height:184px;background:linear-gradient(90deg,#ffffffdf 0%,#ffffff67 50%,transparent);border-radius:50%;transform:rotate(14deg);filter:blur(2px);opacity:.86}
+.globe:after{border-top:6px solid #ffffffe6;border-right:9px solid #efffffab;box-shadow:inset 0 2px 8px #fff9,inset -11px -7px 15px #779c9a42;animation:glass-shift 12s ease-in-out infinite}
+@keyframes glass-shift{0%,100%{opacity:.78}50%{opacity:1}}
+.lid{border:1px solid #f5f7f5;background:linear-gradient(180deg,#fff 0%,#fffefd 27%,#e1e0df 77%,#b8c1c1 100%);box-shadow:inset 0 3px 6px #fff,0 3px 0 #a3b5b58c,0 8px 11px #7186875c}
+.rim{height:25px;background:linear-gradient(180deg,#fff 0%,#fafaf7 30%,#d6d6d2 65%,#b7c0bf 100%);box-shadow:inset 0 2px 3px #fff,0 4px 0 #9caca9ad,0 8px 9px #788a8663}
+.body{background:linear-gradient(91deg,#b9c6c5 0%,#e5ebea 5%,#fffefd 19%,#fffaf6 56%,#f2e7e2 78%,#bbc8c6 98%,#9eafae 100%);border:1px solid #d7dcda;box-shadow:inset 7px 3px 12px #fff,inset -14px 0 15px #9bacaa5c,inset 0 -8px 11px #aab4ac69,0 14px 19px #7588846b}
+.body:before{border:1px solid #fff9;box-shadow:inset 2px 2px 5px #fff8,inset -3px -3px 7px #9eaaa548}
+.knob{border-color:#e4d9d6;box-shadow:inset 4px 4px 7px #fff,inset -6px -6px 9px #a78e9591,0 3px 0 #b5a9ae,0 7px 9px #63787a75}
+.slot{border-color:#f9f7f5;box-shadow:inset 0 8px 11px #60727ba1,0 2px 0 #a9b6b7}
+.foot{box-shadow:inset 0 3px 4px #fff,0 3px 0 #aab5b2,0 8px 9px #63767875}
+.globe .capsule{--depth:1;animation:resting-depth 7.2s ease-in-out infinite;animation-delay:var(--delay);box-shadow:inset 5px 6px 8px #fffdfde8,inset -8px -10px 14px #3d596461,0 3px 5px #4c62607d,1px 1px 0 #fff9;border-color:#fffdfae0;will-change:auto}
+.globe .capsule:nth-child(1){--depth:.92;z-index:1;filter:saturate(.85) brightness(.98)}
+.globe .capsule:nth-child(2),.globe .capsule:nth-child(3),.globe .capsule:nth-child(4){--depth:.97;z-index:2}
+.globe .capsule:nth-child(5),.globe .capsule:nth-child(6){z-index:3;box-shadow:inset 5px 6px 8px #fff,inset -8px -10px 14px #3d596461,0 5px 7px #465f5d90}
+@keyframes resting-depth{0%,72%,100%{transform:translateY(0) rotate(-6deg) scale(var(--depth))}77%{transform:translateY(-2px) rotate(-4deg) scale(var(--depth))}85%{transform:translateY(0) rotate(-8deg) scale(var(--depth))}89%{transform:translateY(-1px) rotate(-5deg) scale(var(--depth))}}
+.machine.dispensing .globe .capsule:not(.gone){box-shadow:inset 5px 6px 8px #fff,inset -8px -10px 14px #3d596461,0 6px 8px #4960608c}
+.girl:not(.arriving):not(.turning):not(.celebrating){animation:girl-breathe 5.4s ease-in-out infinite;transform-origin:50% 98%}
+.girl:not(.arriving):not(.turning):not(.celebrating):after{content:"";inset:0;position:absolute;background:url('hi3d-pet-blink-outline.png') center bottom / contain no-repeat;opacity:0;animation:girl-blink 8.6s steps(1,end) infinite;pointer-events:none}
+.girl.turning{filter:drop-shadow(2px 5px 3px #48595988)}
+.girl.celebrating{animation:girl-celebrate 1s ease-out both;transform-origin:50% 100%}
+.girl.celebrating:after{display:none}
+@keyframes girl-breathe{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-2px) rotate(-1deg)}}
+@keyframes girl-blink{0%,43%,46%,82%,85%,100%{opacity:0}44%,45%,83%,84%{opacity:1}}
+@keyframes girl-celebrate{0%{transform:translateY(0) rotate(0)}24%{transform:translateY(-8px) rotate(-7deg)}48%{transform:translateY(0) scale(1.03,.97) rotate(2deg)}70%{transform:translateY(-4px) rotate(4deg)}100%{transform:translateY(0) rotate(0)}}
+@media(prefers-reduced-motion:reduce){.globe:after,.globe .capsule,.girl:not(.arriving):not(.turning):not(.celebrating),.girl:not(.arriving):not(.turning):not(.celebrating):after,.girl.celebrating{animation:none}}
+body.no-motion .globe:after,body.no-motion .globe .capsule,body.no-motion .girl:not(.arriving):not(.turning):not(.celebrating),body.no-motion .girl:not(.arriving):not(.turning):not(.celebrating):after,body.no-motion .girl.celebrating{animation:none}

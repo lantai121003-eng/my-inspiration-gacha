@@ -1,0 +1,35 @@
+/* Upright product silhouette; perspective comes from lighting and material, not a tilted chassis. */
+.machine{transform:scale(1.02) rotate(0deg)!important;transform-style:flat;filter:drop-shadow(0 18px 17px #697f8760) drop-shadow(0 3px 3px #9ba9a644)}
+.machine:after{left:18px;width:314px;bottom:-17px;height:24px;background:#5b68634a;filter:blur(13px)}
+.lid{background:linear-gradient(180deg,#fff 5%,#f8f5f2 26%,#ded9d7 83%,#bbb9ba);box-shadow:inset 0 4px 6px #fff,inset 0 -4px 6px #a8acb099,0 6px 8px #75838a55}
+.globe{background:radial-gradient(ellipse at 48% 73%,#d8e8e3ac 0%,#eef5f0a8 28%,#ffffff88 65%,#d8e4e399 100%);border:3px solid #d8e4e2;box-shadow:inset 15px 5px 21px #fff,inset -17px -10px 31px #829da16b,inset 0 -14px 13px #829e9873,0 6px 14px #6c848147;transform:none}
+.globe:before{left:17px;top:28px;height:200px;width:37px;background:linear-gradient(90deg,#fff9,#fff1 70%,transparent);transform:rotate(12deg);filter:blur(2px)}
+.globe:after{border-right:9px solid #ffffff73;border-top:5px solid #ffffffbf;box-shadow:inset -9px -4px 14px #a3bab03d}
+.rim{background:linear-gradient(180deg,#fff 0%,#f8f2f0 31%,#d2cbca 75%,#f4efed);box-shadow:0 5px 6px #74848769,inset 0 2px 3px #fff}
+.body{background:linear-gradient(90deg,#c5cccb 0%,#f5f4f1 9%,#fffefd 28%,#fcf8f5 64%,#e2d7d3 86%,#bac4c4 100%);border:1px solid #cbd2d0;box-shadow:inset 6px 1px 12px #fff,inset -13px -3px 17px #9baaa361,0 13px 22px #7e8a8760}
+.body:before{border-color:#ffffffc9;box-shadow:inset 2px 2px 5px #becac243,inset -3px -3px 5px #a8aaa833}
+.knob{box-shadow:inset 4px 5px 8px #fff,inset -6px -7px 11px #a3909c96,0 5px 8px #6b7a7c7d,0 0 0 2px #f8f8f5}
+.slot{box-shadow:inset 0 8px 12px #5668749c,0 2px 4px #ffffffb3;border-color:#f9f7f4}
+.foot{box-shadow:inset 0 3px 3px #fff,0 5px 7px #707e8069}
+/* A loose triangular pile touching the base; no idle levitation. */
+.globe .capsule{animation:resting-capsule 7s ease-in-out infinite;animation-delay:var(--delay);box-shadow:inset 5px 5px 8px #ffffffd0,inset -8px -9px 13px #52657d55,0 3px 4px #4f686861;transform-origin:50% 80%}
+.globe .capsule:nth-child(1){left:140px;top:105px;z-index:1}
+.globe .capsule:nth-child(2){left:45px;top:188px;z-index:2}
+.globe .capsule:nth-child(3){left:140px;top:188px;z-index:2}
+.globe .capsule:nth-child(4){left:235px;top:188px;z-index:2}
+.globe .capsule:nth-child(5){left:90px;top:243px;z-index:3}
+.globe .capsule:nth-child(6){left:185px;top:243px;z-index:3}
+@keyframes resting-capsule{0%,82%,100%{transform:rotate(-6deg)}86%{transform:rotate(-4deg)}92%{transform:rotate(-7deg)}}
+/* Preserve the girl's original red details, while unifying her lighting with the machine. */
+.girl,.girl:hover:not(:disabled){filter:drop-shadow(1px 3px 2px #586b7170)}
+.girl:before{content:"";position:absolute;left:12px;bottom:0;width:64px;height:7px;background:#546b6b3d;border-radius:50%;filter:blur(3px);pointer-events:none}
+@media(max-width:750px){.machine{transform:translateX(-8px) scale(.83)!important}}
+@media(max-width:420px){.machine{transform:translateX(-18px) scale(.74)!important}}
+@media(prefers-reduced-motion:reduce){.globe .capsule{animation:none}}
+body.no-motion .globe .capsule{animation:none}
+.machine.dispensing .globe .capsule:nth-child(1){--dx:-28px;--dy:34px}
+.machine.dispensing .globe .capsule:nth-child(2){--dx:36px;--dy:-24px}
+.machine.dispensing .globe .capsule:nth-child(3){--dx:-35px;--dy:-30px}
+.machine.dispensing .globe .capsule:nth-child(4){--dx:35px;--dy:-34px}
+.machine.dispensing .globe .capsule:nth-child(5){--dx:-23px;--dy:-42px}
+.machine.dispensing .globe .capsule:nth-child(6){--dx:-36px;--dy:-29px}

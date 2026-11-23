@@ -1,0 +1,47 @@
+/* A softer, rounder silhouette inspired by the supplied gacha illustration. */
+.machine{filter:drop-shadow(18px 26px 17px #76898c46);animation:machine-breathe 7s ease-in-out infinite;transform-origin:50% 90%}
+.lid{top:17px;left:108px;width:134px;height:29px;border-radius:45% 45% 30% 30%;background:linear-gradient(110deg,#fffaf1,#e6cfc8 52%,#fdf7ef);border:2px solid #e0d5ce;box-shadow:inset 0 -5px 6px #d5bab3,0 5px 7px #748c9550}
+.lid:after{content:"";position:absolute;left:50px;top:-10px;width:31px;height:12px;border-radius:50% 50% 0 0;background:#ece1d7;border:1px solid #c9bbb5}
+.globe{top:38px;left:18px;width:314px;height:307px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffffd0 0%,#f4faf5ba 42%,#e7e4d5ab 76%,#c6dad3b5 100%);border:4px solid #f5f5ea;box-shadow:inset 16px 12px 25px #fff,inset -24px -15px 28px #98aaa167,0 8px 15px #99aba94b}
+.globe:before{left:31px;top:25px;bottom:auto;width:52px;height:177px;background:linear-gradient(90deg,#fff9,transparent);transform:rotate(22deg)}
+.globe:after{border-right:11px solid #ffffff75;border-top:8px solid #ffffffb5;animation:globe-glimmer 9s ease-in-out infinite}
+.rim{top:329px;left:37px;width:276px;height:27px;background:linear-gradient(#fffaf6,#e3d0c8 72%,#f8f2ed)}
+.body{top:342px;left:55px;width:240px;height:160px;border-radius:30px 30px 57px 57px;background:linear-gradient(110deg,#e9dfdc,#fffaf6 22%,#f6eee9 64%,#dcc5c1);border:1px solid #e5d8d2;box-shadow:inset 6px 1px 14px #fff,inset -12px -5px 19px #cbaeb875,11px 14px 20px #8e92965a}
+.body:before{inset:10px 13px;border-radius:24px 24px 48px 48px;border-color:#f8f6f2}
+.machinebrand{top:15px;font-size:8px;color:#998b91}
+.knob{top:45px;left:83px;width:74px;height:74px;border:8px solid #e7d5d2;background:radial-gradient(circle at 35% 28%,#fffaf6,#dec9c3 80%);box-shadow:inset -5px -5px 9px #ad8f9291,0 5px 9px #8c7d8566;transition:none}
+.knob:after{width:20px;height:56px;border-radius:12px;background:linear-gradient(90deg,#e1bab7,#fff5ec 45%,#d7aeb2);box-shadow:2px 2px 5px #8d7b7c91;transform:rotate(32deg)}
+.knob.spin{animation:knob-click .85s cubic-bezier(.28,.02,.3,1) both}
+.slot{left:81px;bottom:9px;width:80px;height:38px;border-radius:42px 42px 10px 10px;background:linear-gradient(#b29499,#ddc9c9);border:5px solid #fff7f2}
+.foot{left:44px;bottom:-3px;width:262px;border-radius:50% 50% 12px 12px;background:linear-gradient(#fffaf6,#decac6)}
+.girl{top:374px;left:71px}
+.globe .capsule:nth-child(1){left:28px;top:63px}.globe .capsule:nth-child(2){left:112px;top:49px}.globe .capsule:nth-child(3){left:204px;top:70px}.globe .capsule:nth-child(4){left:36px;top:157px}.globe .capsule:nth-child(5){left:119px;top:146px}.globe .capsule:nth-child(6){left:202px;top:165px}
+.globe .capsule{animation:float 5.2s ease-in-out infinite;animation-delay:var(--delay)}
+.machine.dispensing .globe .capsule:not(.gone){animation:globe-shuffle .3s ease-in-out 2}
+.drop{top:500px;left:calc(50% - 40px);animation:drop-bounce 1.15s both}
+.drop[hidden]{display:none}
+.previewart .capsule{animation:capsule-open .65s ease-out both}
+.previewart .capsule:before{animation:half-open-top .7s ease-out both}
+.previewart .capsule:after{animation:half-open-bottom .7s ease-out both}
+.previewart:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:#fff8;filter:blur(25px);pointer-events:none;animation:open-glow .9s both}
+@keyframes machine-breathe{50%{filter:drop-shadow(20px 29px 20px #76898c5a) brightness(1.015)}}
+@keyframes globe-glimmer{50%{border-right-color:#fffdf1d0}}
+@keyframes globe-shuffle{50%{translate:3px -4px;rotate:4deg}}
+@keyframes knob-click{0%{transform:rotate(0)}35%{transform:rotate(116deg)}42%{transform:rotate(107deg)}74%{transform:rotate(325deg)}84%{transform:rotate(313deg)}100%{transform:rotate(360deg)}}
+@keyframes drop-bounce{0%{transform:translate(-17px,-250px) scale(.68);opacity:0}15%{opacity:1}56%{transform:translate(0,38px) scale(1.07, .92)}72%{transform:translate(0,-19px) scale(.97,1.03)}85%{transform:translate(0,5px)}100%{transform:translate(0,0) scale(1)}}
+@keyframes capsule-open{0%{transform:scale(.76) rotate(-18deg);opacity:.3}65%{transform:scale(1.12) rotate(7deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes half-open-top{65%{translate:0 0}100%{translate:0 -15px;rotate:-9deg}}
+@keyframes half-open-bottom{65%{translate:0 0}100%{translate:0 16px;rotate:8deg}}
+@keyframes open-glow{0%{opacity:0;scale:.4}55%{opacity:.8}100%{opacity:0;scale:1.7}}
+@media(max-width:750px){.machine{transform:scale(.83) rotateY(-12deg) rotateX(3deg)}.drop{top:355px}}
+@media(max-width:420px){.machine{transform:scale(.74) rotateY(-12deg) rotateX(3deg)}.drop{top:340px}}
+@media(prefers-reduced-motion:reduce){.machine,.globe:after,.previewart:after{animation:none}}
+body.no-motion .machine,body.no-motion .globe:after,body.no-motion .previewart:after{animation:none}
+.previewart{position:relative;overflow:hidden}
+.previewart .capsule{z-index:2}
+.previewart .capsule{background:transparent;border:0;box-shadow:none;overflow:visible}
+.previewart .capsule:before,.previewart .capsule:after{content:"";position:absolute;inset:0;width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 29% 21%,#fff 0%,#ffffffb5 10%,var(--pale) 35%,var(--tint) 74%,#899aaeaa);border:1px solid #fff;box-shadow:inset 5px 5px 8px #ffffffd0,inset -8px -9px 14px #52657d55,0 10px 13px #74818e52;transform:none}
+.previewart .capsule:before{clip-path:inset(0 0 50% 0);animation:half-open-top .7s ease-out both}
+.previewart .capsule:after{clip-path:inset(50% 0 0 0);animation:half-open-bottom .7s ease-out both}
+.previewart .capsule b{z-index:2;animation:reveal-symbol .7s ease-out both}
+@keyframes reveal-symbol{0%,40%{opacity:0;transform:scale(.45)}100%{opacity:1;transform:scale(1)}}

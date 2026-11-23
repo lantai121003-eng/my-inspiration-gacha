@@ -1,0 +1,47 @@
+.machine{filter:drop-shadow(12px 22px 13px #81928d35);animation:machine-breathe 8s ease-in-out infinite}
+.machine:before{content:"";position:absolute;top:10px;left:-19px;width:388px;height:388px;border-radius:50%;z-index:0;pointer-events:none;box-shadow:0 0 20px 7px #c3d8ea85,0 0 55px 17px #c3d8ea40;animation:halo-colors 16s ease-in-out infinite}
+.lid{top:8px;left:107px;width:136px;height:25px;z-index:7;background:linear-gradient(#fff,#e9e4e2);border:1px solid #d9dce1}
+.lid:after{background:#f4ecea}
+.globe{top:19px;left:-3px;width:356px;height:356px;border:3px solid #eef1f0;background:radial-gradient(circle at 36% 26%,#ffffffac,#f3faf6a6 45%,#e9ede8ad 77%,#d6e0dcbb);box-shadow:inset 12px 11px 25px #fff,inset -21px -14px 25px #a6b9b37d,0 10px 16px #a2b5aa35;overflow:hidden}
+.globe:before{left:38px;top:22px;height:215px}
+.rim{top:356px;left:24px;width:302px;height:23px;border-radius:48%;background:linear-gradient(#fff,#ebd9d5 70%,#ded5d6);z-index:5}
+.body{top:369px;left:49px;width:252px;height:135px;border-radius:18px 18px 35px 35px;background:linear-gradient(106deg,#e9e3e1,#fffdfb 22%,#f5eeed 70%,#e1d0d0);box-shadow:inset 4px 1px 12px #fff,inset -10px -4px 14px #cfbfc066,8px 12px 16px #9a969445}
+.body:before{inset:7px 10px;border-radius:14px 14px 28px 28px}
+.machinebrand{top:11px;font-size:8px;letter-spacing:.12em;color:#8b8790}
+.knob{top:31px;left:93px;width:66px;height:66px;border-width:6px;background:radial-gradient(circle at 36% 24%,#fff,#e9dce1 72%,#d2c3c6)}
+.knob:after{width:17px;height:48px;background:linear-gradient(90deg,#dcc6cc,#fff7f5 55%,#d4bbc1)}
+.slot{left:90px;bottom:6px;width:72px;height:29px;border-width:4px;background:linear-gradient(#a69da8,#e8dfe1)}
+.foot{left:40px;width:270px;height:20px;bottom:0;background:linear-gradient(#fff,#e1d8d8)}
+.girl{left:77px;top:389px;filter:grayscale(.32) saturate(.72) drop-shadow(1px 2px 1px #5c657063)}
+.girl:hover:not(:disabled){filter:grayscale(.18) saturate(.85) drop-shadow(2px 4px 2px #49596385)}
+.globe .capsule:nth-child(1){left:40px;top:95px;--dx:65px;--dy:74px;--twist:44deg}
+.globe .capsule:nth-child(2){left:138px;top:77px;--dx:-78px;--dy:115px;--twist:-62deg}
+.globe .capsule:nth-child(3){left:235px;top:106px;--dx:-88px;--dy:83px;--twist:65deg}
+.globe .capsule:nth-child(4){left:43px;top:194px;--dx:125px;--dy:-78px;--twist:-77deg}
+.globe .capsule:nth-child(5){left:137px;top:184px;--dx:81px;--dy:-92px;--twist:88deg}
+.globe .capsule:nth-child(6){left:231px;top:203px;--dx:-113px;--dy:-92px;--twist:-55deg}
+.machine.dispensing .globe .capsule:not(.gone){animation:mix-capsules 1.7s cubic-bezier(.35,.15,.65,.85) both;animation-delay:0s;z-index:4}
+.machine.dispensing .globe{animation:shake-vessel 1.7s ease-in-out both}
+.machine.dispensing:before{animation:halo-colors 1.7s linear infinite;filter:brightness(1.4)}
+.drop{top:492px;animation:drop-bounce 1.25s both}
+.previewart .capsule,.previewart .capsule b{animation:none}
+.previewart .capsule{background:radial-gradient(circle at 29% 21%,#fff 0%,#ffffffb5 10%,var(--pale) 35%,var(--tint) 74%,#899aaeaa);border:1px solid #fff;box-shadow:inset 5px 5px 8px #ffffffd0,inset -8px -9px 14px #52657d55,0 10px 13px #74818e52;transform:rotate(-12deg)}
+.previewart .capsule:before{inset:auto;left:8px;right:8px;top:6px;width:auto;height:25px;border:0;border-top:2px solid #fff9;border-radius:50%;background:transparent;box-shadow:none;clip-path:none;animation:none;transform:rotate(-17deg)}
+.previewart .capsule:after{inset:auto;left:4px;right:4px;top:52%;width:auto;height:2px;border:0;border-radius:0;background:#ffffffc9;box-shadow:0 2px 2px #63758a48;clip-path:none;animation:none;transform:rotate(-8deg)}
+.previewart:after{display:none}
+@keyframes halo-colors{0%,100%{box-shadow:0 0 24px 7px #b5d2e8a8,0 0 65px 15px #b5d2e84f}25%{box-shadow:0 0 24px 7px #d8c9eea8,0 0 65px 15px #d8c9ee4f}50%{box-shadow:0 0 24px 7px #b7dfcbaa,0 0 65px 15px #b7dfca50}75%{box-shadow:0 0 24px 7px #f2d5b5ac,0 0 65px 15px #f2d5b554}}
+@keyframes mix-capsules{0%{transform:translate(0,0) rotate(-8deg)}18%{transform:translate(calc(var(--dx)*.55),calc(var(--dy)*.58)) rotate(calc(var(--twist)*.55))}37%{transform:translate(var(--dx),var(--dy)) rotate(var(--twist))}56%{transform:translate(calc(var(--dx)*-.5),calc(var(--dy)*-.5)) rotate(calc(var(--twist)*-1))}76%{transform:translate(calc(var(--dx)*.38),calc(var(--dy)*-.35)) rotate(calc(var(--twist)*.45))}100%{transform:translate(0,0) rotate(-8deg)}}
+@keyframes shake-vessel{0%,100%{translate:0 0}20%,57%{translate:-3px 1px}37%,75%{translate:3px -2px}}
+@keyframes drop-bounce{0%{transform:translate(-14px,-236px) scale(.68);opacity:0}16%{opacity:1}54%{transform:translate(0,26px) scale(1.06,.94)}72%{transform:translate(0,-18px)}86%{transform:translate(0,4px)}100%{transform:translate(0,0) scale(1)}}
+@media(max-width:750px){.drop{top:346px}}
+@media(max-width:420px){.drop{top:330px}}
+@media(prefers-reduced-motion:reduce){.machine:before,.machine.dispensing .globe,.machine.dispensing .globe .capsule:not(.gone){animation:none}}
+body.no-motion .machine:before,body.no-motion .machine.dispensing .globe,body.no-motion .machine.dispensing .globe .capsule:not(.gone){animation:none}.machine.dispensing .globe .capsule.leaving{animation:mix-selected 1.7s cubic-bezier(.35,.15,.65,.85) both;z-index:5}
+@keyframes mix-selected{0%{transform:translate(0,0) rotate(-8deg)}18%{transform:translate(calc(var(--dx)*.55),calc(var(--dy)*.58)) rotate(calc(var(--twist)*.55))}37%{transform:translate(var(--dx),var(--dy)) rotate(var(--twist))}56%{transform:translate(calc(var(--dx)*-.5),calc(var(--dy)*-.5)) rotate(calc(var(--twist)*-1))}76%{transform:translate(calc(var(--dx)*.38),calc(var(--dy)*-.35)) rotate(calc(var(--twist)*.45))}100%{transform:translate(var(--exit-x),var(--exit-y)) rotate(45deg) scale(.7);opacity:.3}}
+.knob.spin{animation-duration:1.65s}
+.girl.turning img{animation-duration:1.65s}
+@keyframes drop-bounce{0%{transform:translate(-8px,-122px) scale(.72);opacity:.35}16%{opacity:1}54%{transform:translate(0,26px) scale(1.06,.94)}72%{transform:translate(0,-18px)}86%{transform:translate(0,4px)}100%{transform:translate(0,0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.machine.dispensing .globe .capsule.leaving{animation:none}}
+body.no-motion .machine.dispensing .globe .capsule.leaving{animation:none}
+@media(max-width:750px){.machine{transform:translateX(-8px) scale(.83) rotateY(-12deg) rotateX(3deg)}}
+@media(max-width:420px){.machine{transform:translateX(-18px) scale(.74) rotateY(-12deg) rotateX(3deg)}.drop{left:calc(50% - 58px)}}

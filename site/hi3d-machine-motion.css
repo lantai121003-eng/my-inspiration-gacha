@@ -1,0 +1,46 @@
+.scene{transform:translateX(7%)}
+.scene:before{animation:ambient-drift 17s ease-in-out infinite alternate;transform-origin:50% 55%}
+.machine{transform:scale(1.12)!important;animation:machine-idle 9.5s ease-in-out infinite;transform-origin:50% 85%}
+.machine.dispensing{animation:machine-rattle 1.7s ease-in-out both}
+.machine:before{opacity:.16}
+.globe:after{animation:glass-sweep 13s ease-in-out infinite}
+.globe .capsule{animation:resting-orbits 8.5s ease-in-out infinite;animation-delay:var(--delay);transform-origin:50% 75%}
+.globe .capsule:nth-child(2n){animation-duration:10.2s}
+.globe .capsule:nth-child(3n){animation-duration:7.8s}
+.machine.dispensing .globe .capsule:not(.gone){animation:mix-capsules 1.7s cubic-bezier(.32,.08,.62,.88) both;animation-delay:0s}
+.machine.dispensing .globe .capsule.leaving{animation:mix-selected 1.7s cubic-bezier(.32,.08,.62,.88) both}
+#drawTop{box-shadow:0 4px 0 #263947,0 8px 14px #293d4a26;transition:transform .16s ease,box-shadow .16s ease,background .2s ease}
+#drawTop:disabled{opacity:1}
+#drawTop.pressing,#drawTop.pressing:hover{transform:translateY(3px) scale(.98);box-shadow:0 1px 0 #263947,0 2px 4px #293d4a22}
+.knob.spin{animation:knob-click .95s cubic-bezier(.25,.05,.5,1) both}
+.drop{animation:drop-to-center 1.35s cubic-bezier(.26,.53,.38,1) both}
+.drop .capsule{filter:drop-shadow(0 10px 9px #566b7155)}
+.previewart{isolation:isolate}
+.previewart .capsule{width:150px;height:150px;z-index:3;background:transparent;border:0;box-shadow:none;animation:none}
+.previewart .capsule:before,.previewart .capsule:after{content:"";position:absolute;inset:0;width:100%;height:100%;border:1px solid #fffe;border-radius:50%;background:radial-gradient(circle at 29% 20%,#fff,var(--pale) 41%,var(--tint) 74%,#778c9caf);box-shadow:inset 6px 6px 11px #fffd,inset -8px -9px 15px #52657d59,0 9px 15px #475d6140}
+.previewart .capsule:before{clip-path:inset(0 0 49% 0);animation:open-top 1.05s ease-in-out both}
+.previewart .capsule:after{clip-path:inset(50% 0 0 0);animation:open-bottom 1.05s ease-in-out both}
+.previewart .capsule b{animation:hide-symbol .55s ease both}
+.previewart .project-cover{position:absolute;z-index:2;width:min(225px,78%);min-height:220px;padding:23px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;border-radius:14px;border:1px solid #fff;box-shadow:0 15px 35px #45616b30,inset 0 1px 7px #fff;background:linear-gradient(145deg,#ffffffed,var(--art));animation:cover-reveal .8s .33s cubic-bezier(.22,.73,.32,1) both}
+.project-cover span{font-size:52px;color:#455e6c9c;line-height:1}
+.project-cover small{font-size:9px;color:#607887;letter-spacing:.14em;font-weight:700}
+.project-cover strong{font-size:20px;color:#324957;letter-spacing:-.04em;line-height:1.1;overflow-wrap:anywhere}
+.previewcopy{animation:copy-reveal .65s .32s ease both}
+@keyframes ambient-drift{0%,100%{opacity:.68;transform:scale(1)}50%{opacity:.86;transform:scale(1.035)}}
+@keyframes machine-idle{0%,100%{translate:0 0;rotate:0deg}28%{translate:0 -4px;rotate:.5deg}62%{translate:0 -7px;rotate:-.55deg}80%{translate:0 -2px;rotate:.2deg}}
+@keyframes machine-rattle{0%,100%{translate:0 0;rotate:0deg}18%,50%{translate:-2px 1px;rotate:-.6deg}34%,66%{translate:2px -1px;rotate:.6deg}83%{translate:0 -2px;rotate:-.2deg}}
+@keyframes glass-sweep{0%,75%,100%{opacity:.74;border-right-color:#efffff89}82%{opacity:1;border-right-color:#fff}90%{opacity:.84;border-right-color:#faffffb0}}
+@keyframes resting-orbits{0%,68%,100%{transform:translateY(0) rotate(-6deg) scale(var(--depth))}75%{transform:translateY(-3px) rotate(-3deg) scale(var(--depth))}83%{transform:translateY(1px) rotate(-7deg) scale(var(--depth))}90%{transform:translateY(-1px) rotate(-5deg) scale(var(--depth))}}
+@keyframes drop-to-center{0%{transform:translate(-9px,-120px) scale(.74);opacity:0}17%{opacity:1}39%{transform:translate(0,18px) scale(1.05,.94)}53%{transform:translate(0,-11px) scale(.98,1.04)}65%{transform:translate(0,0) scale(1)}85%{transform:translate(0,-105px) scale(1.24);opacity:1}100%{transform:translate(0,-127px) scale(1.34);opacity:.08}}
+@keyframes open-top{0%,25%{transform:translateY(0) rotate(0)}100%{transform:translateY(-77px) rotate(-13deg);opacity:.27}}
+@keyframes open-bottom{0%,25%{transform:translateY(0) rotate(0)}100%{transform:translateY(77px) rotate(13deg);opacity:.27}}
+@keyframes hide-symbol{0%,42%{opacity:1}100%{opacity:0}}
+@keyframes cover-reveal{0%{opacity:0;transform:scale(.56) rotate(-8deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes copy-reveal{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:translateY(0)}}
+@media(max-width:1050px){.scene{transform:translateX(8%)}.machine{transform:scale(1.1)!important}}
+@media(max-width:750px){.scene{transform:none}.machine{transform:translateX(-8px) scale(.86)!important}.drop{animation-name:drop-to-center-mobile}}
+@media(max-width:420px){.machine{transform:translateX(-18px) scale(.76)!important}}
+@keyframes drop-to-center-mobile{0%{transform:translate(-8px,-120px) scale(.72);opacity:0}17%{opacity:1}42%{transform:translate(0,20px) scale(1.04,.94)}62%{transform:translate(0,0) scale(1)}86%{transform:translate(0,-52px) scale(1.18);opacity:1}100%{transform:translate(0,-65px) scale(1.28);opacity:.08}}
+@media(prefers-reduced-motion:reduce){.scene:before,.machine,.machine.dispensing,.globe:after,.globe .capsule,.machine.dispensing .globe .capsule:not(.gone),.drop,.previewart .capsule:before,.previewart .capsule:after,.previewart .capsule b,.previewart .project-cover,.previewcopy{animation:none!important}.drop{opacity:1}.previewart .capsule{display:none}}
+body.no-motion .scene:before,body.no-motion .machine,body.no-motion .machine.dispensing,body.no-motion .globe:after,body.no-motion .globe .capsule,body.no-motion .machine.dispensing .globe .capsule:not(.gone),body.no-motion .drop,body.no-motion .previewart .capsule:before,body.no-motion .previewart .capsule:after,body.no-motion .previewart .capsule b,body.no-motion .previewart .project-cover,body.no-motion .previewcopy{animation:none!important}
+body.no-motion .previewart .capsule{display:none}
