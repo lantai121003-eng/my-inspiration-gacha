@@ -180,21 +180,17 @@ function showPreview(index) {
   element('previewEnglish').textContent=project.english;
   element('previewDescription').textContent=project.description;
   element('previewRole').textContent=project.role;
+  element('previewRoleGroup').hidden=!project.role?.trim()||['具体职责与参与范围待补充','项目职责待补充','待补充','待填写'].includes(project.role.trim());
+  element('previewEnglish').hidden=!project.english?.trim();
   element('previewLink').href=`#project/${project.id}`;
-  let demoLink=element('previewDemo');
-  if(!demoLink) {
-    demoLink=document.createElement('a');
-    demoLink.id='previewDemo'; demoLink.className='button dark';
-    demoLink.target='_blank'; demoLink.rel='noopener noreferrer';
-    element('previewLink').before(demoLink);
-  }
+  const demoLink=element('previewDemo');
   demoLink.hidden=!project.demoUrl;
   if(project.demoUrl) {
     demoLink.href=project.demoUrl;
     demoLink.textContent=window.PortfolioView.linkLabel(project)+' ↗';
   } else demoLink.removeAttribute('href');
   element('previewLink').classList.toggle('dark',!project.demoUrl);
-  element('previewLink').textContent='查看项目介绍 →';
+  element('previewLink').textContent='项目介绍 →';
   element('next').textContent=state.first===6&&(!state.order||state.position===6)?'开启新一轮 ↻':'继续扭蛋 ↻';
   element('preview').hidden=false;
   element('closeIcon').focus({preventScroll:true}); soundEffect('open');
@@ -254,13 +250,12 @@ function route() {
 element('knob').onclick=draw;
 element('drawTop').onclick=draw;
 element('closeIcon').onclick=closePreview;
-element('closeText').onclick=closePreview;
 element('next').onclick=()=>{ closePreview(); draw(); };
 element('preview').onclick=event=>{ if(event.target===element('preview')) closePreview(); };
 document.addEventListener('keydown',event=>{
   if(event.key==='Escape'&&!element('preview').hidden) closePreview();
   if(event.key==='Tab'&&!element('preview').hidden) {
-    const options=[...element('preview').querySelectorAll('button,a')];
+    const options=[...element('preview').querySelectorAll('button,a')].filter(control=>!control.hidden&&!control.disabled&&control.getClientRects().length);
     const index=options.indexOf(document.activeElement);
     if(event.shiftKey&&index===0) { event.preventDefault(); options.at(-1).focus(); }
     else if(!event.shiftKey&&index===options.length-1) { event.preventDefault(); options[0].focus(); }
