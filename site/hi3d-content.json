@@ -1,12 +1,174 @@
 {
   "schemaVersion": 1,
   "projects": [
-    {"id":"ai-fashion-saas","title":"AI 女装电商 SaaS","english":"AI FASHION SAAS","category":"AI PRODUCTS","type":"AI 产品","description":"面向中小女装电商商家的 AI SaaS 平台，探索 AI 在业务场景中的应用。","role":"具体职责与参与范围待补充","symbol":"✧","color":"#a9c7d7","pale":"#eaf6fa","bg":"#e4eef2","focus":"产品定位、目标用户、业务痛点、AI 能力应用、功能设计与商业价值。","cover":"assets/hi3d-ai-fashion-demo.webp","demoUrl":"https://lan629.github.io/platform-demo/","linkType":"demo","linkLabel":"体验产品 Demo","displayMode":"embed","resourceLinks":[],"sections":{}},
-    {"id":"real-business-product","title":"真实业务线上产品","english":"REAL BUSINESS PRODUCT","category":"AI PRODUCTS","type":"业务产品","description":"在真实业务场景中参与的线上产品，围绕实际需求展开产品实践。","role":"具体职责与参与范围待补充","symbol":"▤","color":"#dec6a3","pale":"#fff6e8","bg":"#f4eddf","focus":"真实业务背景、用户需求、产品方案、实际参与工作与可核实的项目成果。","cover":"","demoUrl":"","sections":{}},
-    {"id":"ai-3d-customization","title":"AI + 3D 定制平台","english":"AI + 3D CUSTOMIZATION","category":"EXPERIMENTS","type":"AI 交互实验","description":"一个结合 AI 与 3D 的定制平台 Demo，探索产品流程与交互体验。","role":"具体职责与参与范围待补充","symbol":"◇","color":"#c5b6da","pale":"#f5edfc","bg":"#eee8f4","focus":"AI 与 3D 的结合方式、用户流程、交互体验与技术应用探索。","cover":"","demoUrl":"","sections":{}},
-    {"id":"birthday-website","title":"生日祝福互动网站","english":"BIRTHDAY WEBSITE","category":"CREATIVE WORKS","type":"互动网页","description":"为朋友制作的生日祝福网站，把心意变成可以互动的小体验。","role":"创意构思 / 视觉设计 / 网页制作","symbol":"♡","color":"#e8bcc7","pale":"#fff0f3","bg":"#f7e9ed","focus":"创意构思、视觉语言、网页交互与表达方式。","cover":"","demoUrl":"","sections":{}},
-    {"id":"photography","title":"摄影作品","english":"PHOTOGRAPHY","category":"CREATIVE WORKS","type":"视觉创作","description":"通过摄影记录观察，探索构图、光影与视觉表达。","role":"摄影创作","symbol":"◎","color":"#b7d5c8","pale":"#effaf4","bg":"#e8f1eb","focus":"作品选择、构图、光影与创作思考。","cover":"","demoUrl":"","sections":{}},
-    {"id":"match-3-game","title":"三消小游戏","english":"MATCH-3 GAME","category":"EXPERIMENTS","type":"游戏原型","description":"独立制作的简单三消小游戏，探索规则、交互与实现。","role":"交互设计 / 独立制作","symbol":"▦","color":"#c4d5bd","pale":"#f4f8ec","bg":"#f0efe6","focus":"游戏规则、操作反馈、原型过程与实现复盘。","cover":"","demoUrl":"","sections":{}}
+    {
+      "id": "ai-fashion-saas",
+      "title": "美衣云——AI智能穿搭美学平台",
+      "english": "Meiyi Cloud — AI Smart Outfit Aesthetics Platform",
+      "type": "AI 产品",
+      "description": "面向中小女装电商商家的AI SaaS创作平台，覆盖款式设计、虚拟商拍等四大核心场景，一站式解决商家实拍成本高，通用AI生成版型失真等痛点。",
+      "role": "AI产品经理",
+      "focus": "",
+      "symbol": "✧",
+      "category": "AI PRODUCTS",
+      "color": "#a9c7d7",
+      "pale": "#eaf6fa",
+      "bg": "#e4eef2",
+      "cover": "assets/hi3d-ai-fashion-demo.webp",
+      "demoUrl": "https://lan629.github.io/platform-demo/",
+      "linkType": "demo",
+      "linkLabel": "体验产品 Demo",
+      "displayMode": "embed",
+      "resourceLinks": [],
+      "sections": {
+        "overview": "聚焦女装赛道中小电商商家，打造垂直领域一站式AI创作平台，覆盖款式设计、虚拟商拍、智能排版、营销素材生成等全链路四大核心场景，一站式解决商家全流程内容生产需求。",
+        "problem": "女装商家改款、实拍成本高昂，通用AI生成的服装版型失真严重，跨平台素材排版繁琐，营销素材同质化问题突出，直接影响店铺营收转化。",
+        "thinking": "搭建AI智能设计助手Agent，以 Agent 智能交互为核心，支持口语化、自由文本输入，自动将用户模糊需求转化为标准化图像处理任务，实现商品图生成、款式改款一键操作。",
+        "design": "平台以Comfy UI作为全平台图像生成工作流编排底座，融合大语言模型与视觉生成模型，依托智能调度框架串联全业务流程，保障功能稳定运行与数据安全。搭建Agent调度体系，梳理Prompt规范、Skill调用规则，结合RAG知识库、大模型多轮对话能力，智能拆解用户需求，精准匹配AI技能与Comfy UI工作流完成智能功能调用。",
+        "outcome": "平台核心功能整体使用率90%，女装成衣版型还原率稳定在95%，商家综合成本下降70%以上。Agent运行成功率达95%，用户意图收敛准确率94%，商家整体创作效率提升85%。",
+        "materials": "https://lan629.github.io/platform-demo/"
+      }
+    },
+    {
+      "id": "real-business-product",
+      "title": "真实业务线上产品",
+      "english": "REAL BUSINESS PRODUCT",
+      "type": "业务产品",
+      "description": "在真实业务场景中参与的线上产品，围绕实际需求展开产品实践。",
+      "role": "具体职责与参与范围待补充",
+      "focus": "真实业务背景、用户需求、产品方案、实际参与工作与可核实的项目成果。",
+      "symbol": "▤",
+      "category": "AI PRODUCTS",
+      "color": "#dec6a3",
+      "pale": "#fff6e8",
+      "bg": "#f4eddf",
+      "cover": "",
+      "demoUrl": "",
+      "linkType": "demo",
+      "linkLabel": "",
+      "displayMode": "external",
+      "resourceLinks": [],
+      "sections": {
+        "overview": "",
+        "problem": "",
+        "thinking": "",
+        "design": "",
+        "outcome": "",
+        "materials": ""
+      }
+    },
+    {
+      "id": "ai-3d-customization",
+      "title": "Hi3D 定制商店",
+      "english": "Hi3D Custom Shop",
+      "type": "AI 产品",
+      "description": "探索AI + 3D 手办定制打印落地，基于产品能力寻找产品商业化新的增长点。",
+      "role": "AI产品经理",
+      "focus": "AI 与 3D 的结合方式、用户流程、交互体验与技术应用探索。",
+      "symbol": "◇",
+      "category": "AI PRODUCTS",
+      "color": "#c5b6da",
+      "pale": "#f5edfc",
+      "bg": "#eee8f4",
+      "cover": "",
+      "demoUrl": "https://lantai121003-eng.github.io/hi3d-print-studio-demo/",
+      "linkType": "demo",
+      "linkLabel": "",
+      "displayMode": "external",
+      "resourceLinks": [],
+      "sections": {
+        "overview": "",
+        "problem": "",
+        "thinking": "",
+        "design": "",
+        "outcome": "",
+        "materials": ""
+      }
+    },
+    {
+      "id": "birthday-website",
+      "title": "生日祝福互动网站",
+      "english": "BIRTHDAY WEBSITE",
+      "type": "互动网页",
+      "description": "为朋友制作的生日祝福网站，把心意变成可以互动的小体验。",
+      "role": "创意构思 / 视觉设计 / 网页制作",
+      "focus": "创意构思、视觉语言、网页交互与表达方式。",
+      "symbol": "♡",
+      "category": "CREATIVE WORKS",
+      "color": "#e8bcc7",
+      "pale": "#fff0f3",
+      "bg": "#f7e9ed",
+      "cover": "",
+      "demoUrl": "https://lantai121003-eng.github.io/birthday-gift/hi3d-birthday.html",
+      "linkType": "demo",
+      "linkLabel": "",
+      "displayMode": "external",
+      "resourceLinks": [],
+      "sections": {
+        "overview": "",
+        "problem": "",
+        "thinking": "",
+        "design": "",
+        "outcome": "",
+        "materials": ""
+      }
+    },
+    {
+      "id": "photography",
+      "title": "摄影作品",
+      "english": "PHOTOGRAPHY",
+      "type": "视觉创作",
+      "description": "通过摄影记录观察，探索构图、光影与视觉表达。",
+      "role": "摄影创作",
+      "focus": "作品选择、构图、光影与创作思考。",
+      "symbol": "◎",
+      "category": "CREATIVE WORKS",
+      "color": "#b7d5c8",
+      "pale": "#effaf4",
+      "bg": "#e8f1eb",
+      "cover": "",
+      "demoUrl": "",
+      "linkType": "demo",
+      "linkLabel": "",
+      "displayMode": "external",
+      "resourceLinks": [],
+      "sections": {
+        "overview": "",
+        "problem": "",
+        "thinking": "",
+        "design": "",
+        "outcome": "",
+        "materials": ""
+      }
+    },
+    {
+      "id": "match-3-game",
+      "title": "三消小游戏",
+      "english": "MATCH-3 GAME",
+      "type": "游戏原型",
+      "description": "独立制作的简单三消小游戏，探索规则、交互与实现。",
+      "role": "交互设计 / 独立制作",
+      "focus": "游戏规则、操作反馈、原型过程与实现复盘。",
+      "symbol": "▦",
+      "category": "EXPERIMENTS",
+      "color": "#c4d5bd",
+      "pale": "#f4f8ec",
+      "bg": "#f0efe6",
+      "cover": "",
+      "demoUrl": "",
+      "linkType": "demo",
+      "linkLabel": "",
+      "displayMode": "external",
+      "resourceLinks": [],
+      "sections": {
+        "overview": "",
+        "problem": "",
+        "thinking": "",
+        "design": "",
+        "outcome": "",
+        "materials": ""
+      }
+    }
   ],
   "extraProjects": [],
   "about": {
@@ -15,6 +177,13 @@
     "skills": "产品思考 · 用户研究 · 需求分析 · 原型设计 · AI 工具应用 · 视觉与交互设计 · 基础开发与交互实现。",
     "experience": "实习和项目经历待补充"
   },
-  "contact": {"email":"","socialLabel":"","socialUrl":""},
-  "resume": {"path":"","label":"下载简历 PDF"}
+  "contact": {
+    "email": "",
+    "socialLabel": "",
+    "socialUrl": ""
+  },
+  "resume": {
+    "path": "",
+    "label": "下载简历 PDF"
+  }
 }
