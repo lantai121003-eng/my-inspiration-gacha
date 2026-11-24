@@ -70,19 +70,19 @@
       "color": "#c5b6da",
       "pale": "#f5edfc",
       "bg": "#eee8f4",
-      "cover": "",
+      "cover": "assets/hi3d-custom-shop-demo.webp",
       "demoUrl": "https://lantai121003-eng.github.io/hi3d-print-studio-demo/",
       "linkType": "demo",
-      "linkLabel": "",
-      "displayMode": "external",
+      "linkLabel": "体验定制商店",
+      "displayMode": "embed",
       "resourceLinks": [],
       "sections": {
-        "overview": "",
-        "problem": "",
-        "thinking": "",
-        "design": "",
-        "outcome": "",
-        "materials": ""
+        "overview": "探索 AI + 3D 手办定制与打印的结合，把照片与个人创意转化为可以预览的定制方案。\n当前以定制商店 Demo 展示产品体验，探索基于 AI 与 3D 能力的商业化方向。",
+        "problem": "体验场景：为自己、朋友或宠物制作具有个人意义的小物件。\nDemo 围绕选择灵感、预览效果、补充定制心意展开；具体用户研究、需求验证与业务背景待补充。",
+        "thinking": "体验路径：浏览灵感 → 选择照片或进入样例 → 查看模型与场景效果 → 调整定制方案。\n产品将“先看效果，再决定打印”作为明确入口，允许先体验样例，再进入个性化流程。",
+        "design": "已可体验：灵感分类、样例定制、360° 模型查看、桌面与礼物场景切换，以及定制步骤导航。\n样例使用预制模型；不能据此认定已接通实时 AI 生成、生产或履约链路。实际技术方案与个人贡献待补充。",
+        "outcome": "当前展示为可交互 Demo，不代表已正式商业化运营。\n页面中的价格、图片与配送周期为演示内容；真实使用反馈、业务指标及项目复盘待补充，不展示未经核实的成果。",
+        "materials": "本页封面来自当前公开 Demo 的真实页面截图。上方可直接体验，也可通过“体验定制商店”在新窗口打开完整页面。\n项目时间、研究记录、原型文档与个人工作范围仍可在后台补充。"
       }
     },
     {
@@ -98,19 +98,19 @@
       "color": "#e8bcc7",
       "pale": "#fff0f3",
       "bg": "#f7e9ed",
-      "cover": "",
+      "cover": "assets/hi3d-birthday-demo.webp",
       "demoUrl": "https://lantai121003-eng.github.io/birthday-gift/hi3d-birthday.html",
       "linkType": "demo",
-      "linkLabel": "",
-      "displayMode": "external",
+      "linkLabel": "打开生日惊喜",
+      "displayMode": "embed",
       "resourceLinks": [],
       "sections": {
-        "overview": "",
-        "problem": "",
-        "thinking": "",
-        "design": "",
-        "outcome": "",
-        "materials": ""
+        "overview": "为朋友制作的生日祝福互动网站，把想说的话藏进一份可以亲手拆开的网页礼物。\n我的角色：创意构思、视觉设计与网页制作。",
+        "problem": "创作场景：向朋友送上一份带有专属感的生日祝福。\n本项目以情感表达与互动体验为重点，不以商业转化或用户规模作为成果。具体创作缘起与准备过程待补充。",
+        "thinking": "从“拆开礼物”的单一入口开始，引导用户逐步进入生日故事。\n页面以“专属惊喜、同频共振、甜蜜心意、许个愿吧、未完待续”组织章节，让祝福不只停留在一段文字。",
+        "design": "已可体验：礼物开启动作、粒子视觉、章节式内容与专属祝福文案。\n页面同时提供声音控制与减少动态入口；本页进入详情后自动加载演示，是否拆开礼物仍由访客决定。具体制作工具与实现过程待补充。",
+        "outcome": "当前可以在线体验生日礼物的开场与后续互动。\n接收者反馈、创作过程中的取舍及个人复盘尚未提供，不编造使用评价或效果数据。",
+        "materials": "本页封面来自生日网站的真实页面截图。上方可直接拆开礼物，也可通过“打开生日惊喜”进入完整页面。\n后续可在后台补充故事草稿、关键页面、交互设计与制作过程。"
       }
     },
     {
