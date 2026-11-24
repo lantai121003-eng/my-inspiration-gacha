@@ -8,7 +8,7 @@ let projects = [
 ];
 let portfolioProjects = projects;
 const escapeContent = value => window.PortfolioView.escape(value);
-const projectArtwork = (project,index) => project.cover ? `<img class="content-cover${['ai-3d-customization','birthday-website'].includes(project.id)?' content-cover--website':''}" data-project="${escapeContent(project.id)}" src="${escapeContent(project.cover)}" alt="${escapeContent(project.title)}作品封面" loading="lazy">` : capsule(project,index);
+const projectArtwork = (project,index) => project.cover ? `<img class="content-cover${['ai-fashion-saas','ai-3d-customization','birthday-website'].includes(project.id)?' content-cover--website':''}" data-project="${escapeContent(project.id)}" src="${escapeContent(project.cover)}" alt="${escapeContent(project.title)}作品封面" loading="lazy">` : capsule(project,index);
 const categoryLabels = {'ALL':'全部作品', 'AI PRODUCTS':'AI 产品', 'EXPERIMENTS':'交互实验', 'CREATIVE WORKS':'创意作品'};
 const capsuleDiameter = 80;
 const capsuleLayout = [
