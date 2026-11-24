@@ -9,3 +9,50 @@
 .experience-footer{flex-wrap:wrap;align-items:flex-start}.experience-footer p{flex:1 1 260px}.experience-controls{display:flex;align-items:center;flex-shrink:0;gap:8px;order:-1}
 .experience-controls .button{white-space:nowrap}
 @media(max-width:650px){.detailart:has(.content-cover){padding:12px}.experience-stage,.experience-stage.is-live{height:min(760px,85svh);min-height:480px;max-height:none}.experience-heading{flex-wrap:wrap}.experience-footer p{flex-basis:240px}.demo-poster{padding:12px}}
+
+.card .art:has(> .content-cover--website) {
+  padding: 0;
+  aspect-ratio: 3 / 2;
+  background: var(--art);
+}
+
+.card .art > .content-cover--website {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.overlay .previewart:has(> .content-cover--website) {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  padding: 0;
+}
+
+.overlay .previewart:has(> [data-project="ai-3d-customization"]) {
+  background: #489ddb;
+}
+
+.overlay .previewart:has(> [data-project="birthday-website"]) {
+  background: #0c0f1b;
+}
+
+.overlay .previewart > .content-cover--website {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media (min-width: 701px) {
+  .overlay .preview:has(.content-cover--website) {
+    grid-template-columns: 50% 50%;
+  }
+}

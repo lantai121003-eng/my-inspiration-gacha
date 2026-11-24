@@ -1,10 +1,10 @@
 {
-  "version": "content-20261124033626983",
+  "version": "content-20261124061059900",
   "owner": "lantai121003-eng",
   "repository": "my-inspiration-gacha",
   "entry": "hi3d-my-capsules.html",
-  "entrySha256": "4a57fb38bca02b2f142e0558f0624c735a9a339b21891de959793636c13a13fa",
-  "resourceCount": 215,
-  "contentSha256": "93c1842db5f0b29fe7abe226c8a6467c9ccd215aa2144ae4a7843404141a4bbd",
+  "entrySha256": "5404e25d8b9f07111b7fd711d8b4a9ba9dd22c1bec7c6f3db68e35e714c27555",
+  "resourceCount": 217,
+  "contentSha256": "af6d208d6c26ff56049cdd3eb3cbbf22795345a8bd3f5695ce483674740f7e5c",
   "contentFile": "hi3d-content.json"
 }
